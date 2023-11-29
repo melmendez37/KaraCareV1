@@ -45,18 +45,18 @@ const WelcomePage = () => {
 const styles = StyleSheet.create({
     container: {width: 424, left: 0, top: 0, flex: 1, alignItems: 'center',justifyContent: 'center', backgroundColor: 'black'},
     something: {width: '100%', height: '100%', position: 'relative', borderRadius: 50, overflow: 'hidden'},
-    recOne: {width: 280, height: 700, left: 70, top: 80, position: 'absolute', backgroundColor: '#BCBCBC'},
-    recTwo: {width: 280, height: 41, left: 70, top: 80, position: 'absolute', backgroundColor: '#46525E'},
-    recThree: {width: 280, height: 40, left: 70, top: 373, position: 'absolute', backgroundColor: '#46525E'},
-    recFour: {width: 280, height: 56, left: 70, top: 724, position: 'absolute', backgroundColor: '#46525E'},
+    recOne: {width: 350, height: 800, left: 40, top: 65, position: 'absolute', backgroundColor: '#BCBCBC'},
+    recTwo: {width: 350, height: 60, left: 40, top: 65, position: 'absolute', backgroundColor: '#46525E'},
+    recThree: {width: 350, height: 40, left: 40, top: 373, position: 'absolute', backgroundColor: '#46525E'},
+    recFour: {width: 350, height: 141, left: 40, top: 724, position: 'absolute', backgroundColor: '#46525E'},
     title: {width: 250, height: 50, left: 90, top: 303, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 18, fontFamily: 'Roboto', fontWeight: '700'},
     image: {width: 120, height: 122, left: 155, top: 162, position: 'absolute'},
-    button1: {width: 150, height: 46, left: 135, top: 467, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 60, justifyContent: 'center', alignItems: 'center'},
-    button2: {width: 150, height: 46, left: 135, top: 545, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 60, justifyContent: 'center', alignItems: 'center'},
-    buttonText:{width: 76, height: 50, left: 177, top: 474, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 12, fontFamily: 'Roboto', fontWeight: '700'},
-    buttonText2: {width: 76, height: 50, left: 177, top: 552, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 12, fontFamily: 'Roboto', fontWeight: '700'},
+    button1: {width: 150, height: 80, left: 135, top: 447, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 60, justifyContent: 'center', alignItems: 'center'},
+    button2: {width: 150, height: 80, left: 135, top: 585, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 60, justifyContent: 'center', alignItems: 'center'},
+    buttonText:{width: 100, height: 55, left: 165, top: 467, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 13, fontFamily: 'Roboto', fontWeight: '700'},
+    buttonText2: {width: 100, height: 55, left: 165, top: 605, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 13, fontFamily: 'Roboto', fontWeight: '700'},
     welcomeContainer: {width: 151, height: 100, left: 135, top: 377, position: 'absolute', alignItems: 'center', display: 'inline-flex'},
-    welcomeText: {width: 151, height: 40, textAlign: 'center', color: '#FFFDFD', fontSize: 25, fontFamily: 'Roboto', fontWeight: 'bold'},
+    welcomeText: {width: 151, height: 50, textAlign: 'center', color: '#FFFDFD', fontSize: 25, fontFamily: 'Roboto', fontWeight: 'bold'},
 });
 
 export default WelcomePage;
