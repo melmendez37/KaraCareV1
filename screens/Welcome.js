@@ -12,11 +12,11 @@ const WelcomePage = () => {
     const handleExternalResponder = () => {
         nav.navigate('ExternalRespondentForm');
     };
-    /*
+    
     const handleMedStaff = () => {
-        nav.navigate
+        nav.navigate('LoginScreen')
     }
-    */
+    
     return(
         <View style = {styles.container}>
             <LinearGradient colors = {['#00598B', '#AD6868']} style = {styles.something}>
@@ -29,11 +29,11 @@ const WelcomePage = () => {
                 <Image style={styles.image} source = {localImage} />
                     
                 <TouchableOpacity style = {styles.button1} onPress={handleExternalResponder}/>
-                    
                 <Text style = {styles.buttonText}>EXTERNAL RESPONDER</Text>
                     
-                <View style={styles.button2} />
+                <TouchableOpacity style = {styles.button2} onPress={handleExternalResponder}/>
                 <Text style={styles.buttonText2}>MEDICAL STAFF</Text>
+
                 <View style={styles.welcomeContainer}>
                 <Text style={styles.welcomeText}>WELCOME</Text>
                 </View>
