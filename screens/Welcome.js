@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
-import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import Gif from 'react-native-gif';
 
 const localImage = require('../assets/karacare.png')
 
@@ -19,7 +19,7 @@ const WelcomePage = () => {
     */
     return(
         <View style = {styles.container}>
-            <LinearGradient colors = {['#00598B', '#AD6868']} style={styles.something}>
+            <Gif source={{uri:'../assets/1_j7mgaTFK0gYJEfC3KmprUw.gif'}} style={styles.something}>
                 <View style={styles.recOne}/>
                 <View style={styles.recTwo}/>
                 <View style={styles.recThree}/>
@@ -38,7 +38,7 @@ const WelcomePage = () => {
                 <Text style={styles.welcomeText}>WELCOME</Text>
                 </View>
         
-            </LinearGradient>
+            </Gif>
         </View>
     )
 }

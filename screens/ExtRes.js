@@ -2,7 +2,6 @@ import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
 import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import WelcomePage from "./Welcome";
 
 const localImage = require('../assets/karacare.png')
 
@@ -10,9 +9,19 @@ const localImage = require('../assets/karacare.png')
 const ExternalRepsonderForm = () => {
     const nav = useNavigation();
 
+    const backWelcome = () => {
+        nav.navigate('WelcomePage');
+    }
+
     const handleExternalResponder = () => {
         if(!name || !address || !number || !cause){
-            Alert.alert('Incomplete Form', 'Fill up the missing fields');
+            Alert.alert('INCOMPLETE FORM', 'Please fill up the missing fields');
+        }
+        else if(!/^\d+$/.test(number) || !number.startsWith('09')){
+            Alert.alert('INPUT ERROR!', 'Please enter a valid phone number Ex.(09123456789)')
+        }
+        else if(number.toString().length != 11){
+            Alert.alert('INPUT ERROR!', 'Number must be 11 digits.')
         }
         else{
             Alert.alert(
@@ -96,9 +105,9 @@ const ExternalRepsonderForm = () => {
                 <View style={styles.recFour}></View>
 
                 <TouchableOpacity style = {styles.buttonOne} onPress={handleExternalResponder}/>
-                <Text style={styles.confirm}>Next</Text>
+                <Text style={[styles.confirm, {pointerEvents:('none')}]}>Next</Text>
                 
-                <TouchableOpacity style = {styles.buttonTwo} onPress={WelcomePage}/>
+                <TouchableOpacity style = {styles.buttonTwo} onPress={backWelcome}/>
                 <Text style={styles.delete}>Back</Text>
                 <View style={styles.recFive}>
 
@@ -155,15 +164,15 @@ const ExternalRepsonderForm = () => {
 const styles = StyleSheet.create({
     container: {width: 424, left: 0, top: 0, flex: 1, alignItems: 'center',justifyContent: 'center', backgroundColor: 'black'},
     something: {width: '100%', height: '100%', position: 'relative', borderRadius: 50, overflow: 'hidden'},
-    recOne: {width: 280, height: 700, left: 70, top: 80, position: 'absolute', backgroundColor: '#BCBCBC'},
-    title: {width: 165, height: 49, left: 166, top: 170, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
-    image: {width: 68, height: 66, left: 96, top: 155, position: 'absolute'},
-    recTwo: {width: 281, height: 77, left: 70, top: 236, position: 'absolute', backgroundColor: '#8C8C8C'},
+    recOne: {width: 350, height: 800, left: 40, top: 65, position: 'absolute', backgroundColor: '#BCBCBC'},
+    title: {width: 200, height: 49, left: 166, top: 160, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 18, fontFamily: 'Roboto', fontWeight: '700'},
+    image: {width: 68, height: 66, left: 76, top: 150, position: 'absolute'},
+    recTwo: {width: 350, height: 77, left: 40, top: 236, position: 'absolute', backgroundColor: '#8C8C8C'},
     buttonOne: {width: 55, height: 21, left: 143, top: 540, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
     buttonTwo: {width: 55, height: 21, left: 219, top: 540, position: 'absolute', backgroundColor: '#46525E', borderRadius: 50},
-    header: {width: 228, height: 40, left: 96, top: 260, position: 'absolute', textAlign: 'center', color: '#FFFDFD', fontSize: 20, fontFamily: 'Roboto', fontWeight: '700'},
-    recThree: {width: 280, height: 56, left: 70, top: 724, position: 'absolute', backgroundColor: '#8C8C8C'},
-    recFour: {width: 280, height: 56, left: 70, top: 80, position: 'absolute', backgroundColor: '#8C8C8C'},
+    header: {width: 240, height: 60, left: 96, top: 260, position: 'absolute', textAlign: 'center', color: '#FFFDFD', fontSize: 24, fontFamily: 'Roboto', fontWeight: '700'},
+    recThree: {width: 350, height: 141, left: 40, top: 724, position: 'absolute', backgroundColor: '#8C8C8C'},
+    recFour: {width: 350, height: 64, left: 40, top: 65, position: 'absolute', backgroundColor: '#8C8C8C'},
     confirm: {width: 46, height: 19, left: 146, top: 543, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 10, fontFamily: 'Roboto', fontWeight: '700'},
     delete: {width: 46, height: 19, left: 222, top: 543, position: 'absolute', textAlign: 'center', color: '#D9D9D9', fontSize: 10, fontFamily: 'Roboto', fontWeight: '700'},
     recFive: {width: 170, height: 26, left: 125, top: 340, position: 'absolute'},
