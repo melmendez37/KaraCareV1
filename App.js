@@ -6,7 +6,10 @@ import ExtResNotification from './screens/ExternalNotification.js';
 import LoginScreen from './screens/Login.js';
 import Splash from './screens/Splash.js';
 import WelcomePage from './screens/Welcome.js';
-
+/*
+import MedStaffForm from './screens/ExtRes2.js';
+import Home from './screens/Home.js';
+*/
 const Stack = createStackNavigator();
 
 const App = () =>{
