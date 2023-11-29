@@ -164,10 +164,12 @@ const ExternalRepsonderForm = () => {
 const styles = StyleSheet.create({
     container: {width: 424, left: 0, top: 0, flex: 1, alignItems: 'center',justifyContent: 'center', backgroundColor: 'black'},
     something: {width: '100%', height: '100%', position: 'relative', borderRadius: 50, overflow: 'hidden'},
+    
     recOne: {width: 350, height: 800, left: 40, top: 65, position: 'absolute', backgroundColor: '#BCBCBC'},
     title: {width: 200, height: 49, left: 166, top: 160, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 18, fontFamily: 'Roboto', fontWeight: '700'},
     image: {width: 68, height: 66, left: 76, top: 150, position: 'absolute'},
     recTwo: {width: 350, height: 77, left: 40, top: 236, position: 'absolute', backgroundColor: '#8C8C8C'},
+    
     buttonOne: {width: 55, height: 21, left: 143, top: 540, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
     buttonTwo: {width: 55, height: 21, left: 219, top: 540, position: 'absolute', backgroundColor: '#46525E', borderRadius: 50},
     header: {width: 240, height: 60, left: 96, top: 260, position: 'absolute', textAlign: 'center', color: '#FFFDFD', fontSize: 24, fontFamily: 'Roboto', fontWeight: '700'},
