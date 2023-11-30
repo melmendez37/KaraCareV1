@@ -2,8 +2,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import ExternalRepsonderForm from './screens/ExtRes.js';
+import MedStaffForm from './screens/ExtRes2.js';
 import ExtResNotification from './screens/ExternalNotification.js';
+import Home from './screens/Home.js';
+import Inpatient from './screens/Inpatient.js';
 import LoginScreen from './screens/Login.js';
+import MedStaffNotif from './screens/MedStaffNotif.js';
+import NotifHosp from './screens/NotifHosp.js';
+import Outpatient from './screens/Outpatient.js';
+import SignUpScreen from './screens/SignUp.js';
 import Splash from './screens/Splash.js';
 import WelcomePage from './screens/Welcome.js';
 import Inpatient from './screens/Inpatient.js';
@@ -29,9 +36,13 @@ const App = () =>{
           <Stack.Screen name = 'ExternalRespondentForm' component={ExternalRepsonderForm}/>
           <Stack.Screen name = 'ExtResNotification' component={ExtResNotification}/>
           <Stack.Screen name = 'LoginScreen' component={LoginScreen}/>
-          <Stack.Screen name = 'Inpatient' component={Inpatient}></Stack.Screen>
-          <Stack.Screen name = 'Outpatient' component={Outpatient}></Stack.Screen>
-          <Stack.Screen name = 'NotifyHospital' component={NotifHosp}></Stack.Screen>
+          <Stack.Screen name = 'Inpatient' component={Inpatient}/>
+          <Stack.Screen name = 'Outpatient' component={Outpatient}/>
+          <Stack.Screen name = 'NotifyHospital' component={NotifHosp}/>
+          <Stack.Screen name = 'Home' component={Home}/>
+          <Stack.Screen name = 'MedStaffForm' component={MedStaffForm}/>
+          <Stack.Screen name = 'SignUpScreen' component={SignUpScreen}/>
+          <Stack.Screen name = 'MedStaffNotif' component={MedStaffNotif}/>
           <Stack.Screen name = 'SendRes' component={SendRes}></Stack.Screen>
           <Stack.Screen name = 'UploadFileTab' component={UploadFileTab}></Stack.Screen>
         </Stack.Navigator>
