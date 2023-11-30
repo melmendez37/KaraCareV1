@@ -28,7 +28,7 @@ const App = () =>{
 
   return(
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Notif' screenOptions={{headerShown: false}}>
+        <Stack.Navigator initialRouteName='Splash' screenOptions={{headerShown: false}}>
           <Stack.Screen name = 'Splash' component={Splash}/>
           <Stack.Screen name = 'WelcomePage' component={WelcomePage}/>
           <Stack.Screen name = 'ExternalRespondentForm' component={ExternalRepsonderForm}/>
