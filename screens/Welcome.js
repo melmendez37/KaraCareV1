@@ -31,7 +31,7 @@ const WelcomePage = () => {
                 <TouchableOpacity style = {styles.button1} onPress={handleExternalResponder}/>
                 <Text style = {styles.buttonText}>EXTERNAL RESPONDER</Text>
                     
-                <TouchableOpacity style = {styles.button2} onPress={handleExternalResponder}/>
+                <TouchableOpacity style = {styles.button2} onPress={handleMedStaff}/>
                 <Text style={styles.buttonText2}>MEDICAL STAFF</Text>
 
                 <View style={styles.welcomeContainer}>
