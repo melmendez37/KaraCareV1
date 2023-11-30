@@ -9,6 +9,10 @@ import WelcomePage from './screens/Welcome.js';
 import Inpatient from './screens/Inpatient.js';
 import Outpatient from './screens/Outpatient.js';
 import NotifHosp from './screens/NotifHosp.js';
+import SendRes from './screens/SendRes.js';
+import UploadFileTab from './screens/UploadFile.js';
+
+
 /*
 import MedStaffForm from './screens/ExtRes2.js';
 import Home from './screens/Home.js';
@@ -19,7 +23,7 @@ const App = () =>{
 
   return(
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Splash' screenOptions={{headerShown: false}}>
+        <Stack.Navigator initialRouteName='UploadFileTab' screenOptions={{headerShown: false}}>
           <Stack.Screen name = 'Splash' component={Splash}/>
           <Stack.Screen name = 'WelcomePage' component={WelcomePage}/>
           <Stack.Screen name = 'ExternalRespondentForm' component={ExternalRepsonderForm}/>
@@ -28,6 +32,8 @@ const App = () =>{
           <Stack.Screen name = 'Inpatient' component={Inpatient}></Stack.Screen>
           <Stack.Screen name = 'Outpatient' component={Outpatient}></Stack.Screen>
           <Stack.Screen name = 'NotifyHospital' component={NotifHosp}></Stack.Screen>
+          <Stack.Screen name = 'SendRes' component={SendRes}></Stack.Screen>
+          <Stack.Screen name = 'UploadFileTab' component={UploadFileTab}></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
   );
