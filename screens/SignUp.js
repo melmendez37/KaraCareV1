@@ -1,29 +1,20 @@
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
-import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 
 const localImage = require('../assets/karacare.png')
 
-const LoginScreen = () => {
+const SignUpScreen = () => {
     const nav = useNavigation();
     const [isUserFocused, setIsUserFocused] = useState(false);
     const [user, setUser] = useState('');
     const [isPassFocused, setIsPassFocused] = useState(false);
     const [pass, setPass] = useState('');
 
-    const handleLogin = () => {
-        if(!user || !pass){
-            Alert.alert('WARNING', 'Please fill up the missing fields');
-        }
-        else{
-            nav.navigate('Home');
-        }
-    };
-
     const handleSignUp = () => {
-        nav.navigate('SignUpScreen');
+        nav.navigate('LoginScreen');
     }
 
     const handleFocus = (field) => {
@@ -62,10 +53,6 @@ const LoginScreen = () => {
                 <View style={styles.header}></View>
                 <Text style={styles.headerText}>LOGIN</Text>
                 
-                
-                <TouchableOpacity style = {styles.buttonOne} onPress={handleLogin}/>
-                <Text style={styles.loginText}>Log In</Text>
-                
                 <TouchableOpacity style = {styles.buttonTwo} onPress={handleSignUp}/>
                 <Text style={styles.signupText}>Sign Up</Text>
 
@@ -90,7 +77,7 @@ const LoginScreen = () => {
                         secureTextEntry={true}
                         onChangeText={(text) => setPass(text)}
                         placeholder = {(isPassFocused || pass) ? '': 'Password'}
-                        placeholderColor = "#888" />
+                        placeholderColor = "#888"/>
                 </View>
 
                     <View style={styles.recFour}/>
@@ -125,4 +112,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default LoginScreen;
+export default SignUpScreen;
