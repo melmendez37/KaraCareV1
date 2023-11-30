@@ -6,6 +6,9 @@ import ExtResNotification from './screens/ExternalNotification.js';
 import LoginScreen from './screens/Login.js';
 import Splash from './screens/Splash.js';
 import WelcomePage from './screens/Welcome.js';
+import Inpatient from './screens/Inpatient.js';
+import Outpatient from './screens/Outpatient.js';
+import NotifHosp from './screens/NotifHosp.js';
 /*
 import MedStaffForm from './screens/ExtRes2.js';
 import Home from './screens/Home.js';
@@ -22,6 +25,9 @@ const App = () =>{
           <Stack.Screen name = 'ExternalRespondentForm' component={ExternalRepsonderForm}/>
           <Stack.Screen name = 'ExtResNotification' component={ExtResNotification}/>
           <Stack.Screen name = 'LoginScreen' component={LoginScreen}/>
+          <Stack.Screen name = 'Inpatient' component={Inpatient}></Stack.Screen>
+          <Stack.Screen name = 'Outpatient' component={Outpatient}></Stack.Screen>
+          <Stack.Screen name = 'NotifyHospital' component={NotifHosp}></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
   );
