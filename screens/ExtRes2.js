@@ -104,7 +104,7 @@ const MedStaffForm = () => {
                 <View style={styles.recThree}></View>
                 <View style={styles.recFour}></View>
 
-                <TouchableOpacity style = {styles.buttonOne} onPress={handleExternalResponder}/>
+                <TouchableOpacity style = {styles.buttonOne} onPress={handleMedStaff}/>
                 <Text style={[styles.confirm, {pointerEvents:('none')}]}>Next</Text>
                 
                 <TouchableOpacity style = {styles.buttonTwo} onPress={backHome}/>

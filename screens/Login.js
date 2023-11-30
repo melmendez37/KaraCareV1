@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 
 const localImage = require('../assets/karacare.png')
@@ -20,10 +20,11 @@ const LoginScreen = () => {
         else{
             nav.navigate('Home');
         }
-        
-        
-        
     };
+
+    const handleSignUp = () => {
+        nav.navigate('SignUp');
+    }
 
     const handleFocus = (field) => {
         switch (field){
