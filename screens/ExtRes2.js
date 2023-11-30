@@ -6,14 +6,14 @@ import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } fro
 const localImage = require('../assets/karacare.png')
 
 
-const ExternalRepsonderForm = () => {
+const MedStaffForm = () => {
     const nav = useNavigation();
 
-    const backWelcome = () => {
-        nav.navigate('WelcomePage');
+    const backHome = () => {
+        nav.navigate('Home');
     }
 
-    const handleExternalResponder = () => {
+    const handleMedStaff = () => {
         if(!name || !address || !number || !cause){
             Alert.alert('INCOMPLETE FORM', 'Please fill up the missing fields');
         }
@@ -107,7 +107,7 @@ const ExternalRepsonderForm = () => {
                 <TouchableOpacity style = {styles.buttonOne} onPress={handleExternalResponder}/>
                 <Text style={[styles.confirm, {pointerEvents:('none')}]}>Next</Text>
                 
-                <TouchableOpacity style = {styles.buttonTwo} onPress={backWelcome}/>
+                <TouchableOpacity style = {styles.buttonTwo} onPress={backHome}/>
                 <Text style={styles.delete}>Back</Text>
                 <View style={styles.recFive}>
 
@@ -187,4 +187,4 @@ const styles = StyleSheet.create({
     fieldFour: {width: 250, height: 40, left: -5, top: 40, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50, textAlign: 'center'},
 });
 
-export default ExternalRepsonderForm;
+export default MedStaffForm;
