@@ -13,6 +13,7 @@ import Notif from './screens/Notif.js';
 import NotifHosp from './screens/NotifHosp.js';
 import Outpatient from './screens/Outpatient.js';
 import SendRes from './screens/SendRes.js';
+import SentResNotif from './screens/SentResNotif.js';
 import SignUpScreen from './screens/SignUp.js';
 import Splash from './screens/Splash.js';
 import UploadFileTab from './screens/UploadFile.js';
@@ -42,6 +43,7 @@ const App = () =>{
           <Stack.Screen name = 'Notif' component={Notif}/>
           <Stack.Screen name = 'NotifHosp' component={NotifHosp}/>
           <Stack.Screen name = 'DisplayFile' component={DisplayFile}/>
+          <Stack.Screen name = 'SentResNotif' component={SentResNotif}/>
         </Stack.Navigator>
       </NavigationContainer>
   );
