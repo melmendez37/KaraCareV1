@@ -11,7 +11,7 @@ const MedStaffNotif = () => {
     const nav = useNavigation();
 
     const backWelcome = () => {
-        nav.navigate('WelcomePage');
+        nav.navigate('Home');
     };
     return(
         <View style = {styles.container}>

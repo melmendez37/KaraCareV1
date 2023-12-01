@@ -8,20 +8,15 @@ import Home from './screens/Home.js';
 import Inpatient from './screens/Inpatient.js';
 import LoginScreen from './screens/Login.js';
 import MedStaffNotif from './screens/MedStaffNotif.js';
+import Notif from './screens/Notif.js';
 import NotifHosp from './screens/NotifHosp.js';
-import SignUpScreen from './screens/SignUp.js';
-import Splash from './screens/Splash.js';
-import WelcomePage from './screens/Welcome.js';
 import Outpatient from './screens/Outpatient.js';
 import SendRes from './screens/SendRes.js';
+import SignUpScreen from './screens/SignUp.js';
+import Splash from './screens/Splash.js';
 import UploadFileTab from './screens/UploadFile.js';
-import Notif from './screens/Notif.js';
+import WelcomePage from './screens/Welcome.js';
 
-
-/*
-import MedStaffForm from './screens/ExtRes2.js';
-import Home from './screens/Home.js';
-*/
 const Stack = createStackNavigator();
 
 const App = () =>{
@@ -41,9 +36,10 @@ const App = () =>{
           <Stack.Screen name = 'MedStaffForm' component={MedStaffForm}/>
           <Stack.Screen name = 'SignUpScreen' component={SignUpScreen}/>
           <Stack.Screen name = 'MedStaffNotif' component={MedStaffNotif}/>
-          <Stack.Screen name = 'SendRes' component={SendRes}></Stack.Screen>
-          <Stack.Screen name = 'UploadFileTab' component={UploadFileTab}></Stack.Screen>
-          <Stack.Screen name = 'Notif' component={Notif}></Stack.Screen>
+          <Stack.Screen name = 'SendRes' component={SendRes}/>
+          <Stack.Screen name = 'UploadFileTab' component={UploadFileTab}/>
+          <Stack.Screen name = 'Notif' component={Notif}/>
+          <Stack.Screen name = 'NotifHosp' component={NotifHosp}/>
         </Stack.Navigator>
       </NavigationContainer>
   );

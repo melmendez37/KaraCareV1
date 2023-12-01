@@ -1,35 +1,100 @@
 
-import { StyleSheet, Text, View, Image } from 'react-native';
-import React from 'react'
+import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
+import React, { useState } from 'react';
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 const Outpatient = () => {
+    const nav = useNavigation();
+
+    const goNext = () => {
+        nav.navigate('NotifHosp');
+    }
+
+    const goBack = () => {
+        nav.navigate('Home');
+    }
+    const [isNameFocused, setIsNameFocused] = useState(false);
+    const [name, setName] = useState('');
+    const [isNumFocused, setIsNumFocused] = useState(false);
+    const [num, setNum] = useState('');
+    const [isDateFocused, setIsDateFocused] = useState(false);
+    const [date, setDate] = useState('');
+
+    const handleFocus = (field) => {
+        switch (field){
+            case 'name':
+                setIsNameFocused(true);
+                break;
+            case 'num':
+                setIsNumFocused(true);
+                break;
+            case 'date':
+              setIsDateFocused(true);
+            default:
+                break;
+        }
+    }
+  
+    const handleBlur = (field) => {
+        switch (field){
+            case 'name':
+                setIsNameFocused(false);
+                break;
+            case 'num':
+                setIsNumFocused(false);
+                break;
+            case 'date':
+                setIsDateFocused(false);
+            default:
+                break;
+        }
+    }
+
   return (
 <View styles={styles.container}>
     <LinearGradient colors={[ '#00598B', '#AD6868']} style={styles.something}>
-        <View style={styles.recOne} />
+        <View style={styles.recOnere} />
         <Text style={styles.title}>KaraCare EMERGENCY SYSTEM</Text>
         <Image style={styles.image} source= {require("../assets/karacare.png")} />
-        <View style={styles.button1}/>
-        <View style={styles.button2}/>
-        <View style={styles.recTwo}></View>
-        <Text style={styles.buttonText2}>Confirm</Text>
-        <Text style={styles.buttonText1}>Delete</Text>
+        <View style={styles.recTwo}/>
+        <TouchableOpacity style={styles.button1} onPress={goNext}/>
+        <TouchableOpacity style={styles.button2} onPress={goBack}/>
+        <Text style={styles.buttonText2}>Next</Text>
+        <Text style={styles.buttonText1}>Back</Text>
         <View style={styles.recThree}></View>
         <View style={styles.recFour}></View>
-        <View style={styles.recFive}></View>
+        <View style={styles.header}></View>
         <Text style={styles.recText1}>OUTPATIENT</Text>
-        <View style={styles.container2}>
-            <View style={styles.textBox1} />
-            <Text style={styles.inputText1}>Name</Text>
+        <View style={styles.textBox1}>
+        <TextInput style={styles.textField1}
+                            value={name}
+                            textAlign= "center"
+                            onFocus = {() => handleFocus('name')}
+                            onBlur = {() => handleBlur('name')}
+                            onChangeText={(text) => setName(text)}
+                            placeholder = {(isNameFocused || name) ? '': 'Name'}
+                            placeholderColor = "#888"/>
+      </View>
+        <View style={styles.textBox2}>
+        <TextInput style={styles.textField2}
+                            value={date}
+                            textAlign= "center"
+                            onFocus = {() => handleFocus('date')}
+                            onBlur = {() => handleBlur('date')}
+                            onChangeText={(text) => setDate(text)}
+                            placeholder = {(isDateFocused || date) ? '': 'Date of Discharge'}
+                            placeholderColor = "#888"/>
         </View>
-        <View style={styles.container3}>
-            <View style={styles.textBox2} />
-            <Text style={styles.inputText2}>Date of Discharge</Text>
-        </View>
-        <View style={styles.container4}>
-            <View style={styles.textBox3} />
-            <Text style={styles.inputText3}>Phone Number</Text>
+        <View style={styles.textBox3}>
+        <TextInput style={styles.textField3}
+                            value={num}
+                            textAlign= "center"
+                            onFocus = {() => handleFocus('num')}
+                            onBlur = {() => handleBlur('num')}
+                            onChangeText={(text) => setNum(text)}
+                            placeholder = {(isNumFocused || num) ? '': 'Phone Number'}
+                            placeholderColor = "#888"/>
         </View>
     </LinearGradient>
 </View>
@@ -39,29 +104,27 @@ const Outpatient = () => {
 
 
 const styles = StyleSheet.create({
-    container: {width: 424, left: 0, top: 0, flex: 1, alignItems: 'center',justifyContent: 'center', backgroundColorColor: 'black'},
+    container: {width: 424, left: 0, top: 0, flex: 1, alignItems: 'center',justifyContent: 'center', backgroundColor: 'black'},
     something:{width: '100%', height: '100%', position: 'relative', borderRadius: 50, overflow: 'hidden'},
-    recOne:{width: 340, height: 700, left: 40, top: 41, position: 'absolute', backgroundColor: '#BCBCBC'},
-    title:{width: 248, height: 49, left:130, top: 121, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 16, fontFamily: 'Inter', fontWeight: '700'},
+    recOnere:{width: 350, height: 800, left: 40, top: 41, position: 'absolute', backgroundColor: '#BCBCBC'},
+    title:{width: 248, height: 49, left: 95, top: 121, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 16, fontFamily: 'Roboto', fontWeight: '700'},
     image:{width: 68, height: 66, left: 58, top: 107, position: 'absolute'},
-    button1:{width: 65, height: 21, left: 150, top: 420, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 100},
-    button2:{width: 65, height: 21, left: 230, top: 420, position: 'absolute', backgroundColor: '#506C86', borderRadius: 100},
-    recTwo:{width: 340, height: 56, left: 40, top: 629, position: 'absolute', backgroundColor: '#8C8C8C'},
-    buttonText2:{width: 55, height: 19, left: 154, top: 422, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 10, fontFamily: 'Inter', fontWeight: '700'},
-    buttonText1:{width: 46, height: 19, left: 238, top: 421, position: 'absolute', textAlign: 'center', color: '#D9D9D9', fontSize: 10, fontFamily: 'Inter', fontWeight: '700'},
-    recThree:{width: 341, height: 56, left: 40, top: 685, position: 'absolute', backgroundColor: '#46525E'},
-    recFour:{width: 340, height: 41, left: 40, top: 41, position: 'absolute', backgroundColor: '#46525E'},
-    recFive:{width: 341, height: 48, left: 40, top: 185, position: 'absolute', backgroundColor: '#46525E'},
-    recText1:{width: 237, height: 30, left: 92, top: 197, position: 'absolute', textAlign: 'center', color: '#FFFBFB', fontSize: 20, fontFamily: 'Inter', fontWeight: '700'},
-    container2:{width: 247, height: 37, left: 86, top: 254, position: 'absolute'},
-    textBox1:{width: 247, height: 37, left: 0, top: 0, position: 'absolute', backgroundColor: 'white', borderRadius: 4, border: '1px #D5D8DE solid'},
-    inputText1:{left: 16, top: 11.77, position: 'absolute', opacity: 0.80, color: '#323941', fontSize: 16, fontFamily: 'PT Mono', fontWeight: '400'},
-    container3:{width: 247, height: 37, left: 86, top: 306, position: 'absolute'},
-    textBox2:{width: 247, height: 37, left: 0, top: 0, position: 'absolute', backgroundColor: 'white', borderRadius: 4, border: '1px #D5D8DE solid'},
-    inputText2:{left: 16, top: 11.77, position: 'absolute', opacity: 0.80, color: '#323941', fontSize: 16, fontFamily: 'PT Mono', fontWeight: '400',},
-    container4:{width: 247, height: 37, left: 86, top: 358, position: 'absolute'},
-    textBox3:{width: 247, height: 37, left: 0, top: 0, position: 'absolute', backgroundColor: 'white', borderRadius: 4, border: '1px #D5D8DE solid'},
-    inputText3:{left: 16, top: 11.77, position: 'absolute', opacity: 0.80, color: '#323941', fontSize: 16, fontFamily: 'PT Mono', fontWeight: '400',},
+    button2:{width: 80, height: 40, left: 222, top: 480, position: 'absolute', backgroundColor: '#46525E', borderRadius: 100},
+    button1:{width: 80, height: 40, left: 133, top: 480, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 100},
+    recTwo:{width: 350, height: 80, left: 40, top: 661, position: 'absolute', backgroundColor: '#8C8C8C'},
+    buttonText2:{width: 40, height: 20, left: 150, top: 490, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
+    buttonText1:{width: 40, height: 20, left: 240, top: 490, position: 'absolute', textAlign: 'center', color: 'white', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
+    recThree:{width: 350, height: 100, left: 40, top: 741, position: 'absolute', backgroundColor: '#46525E'},
+    recFour:{width: 350, height: 41, left: 40, top: 41, position: 'absolute', backgroundColor: '#46525E'},
+    header:{width: 350, height: 48, left: 40, top: 185, position: 'absolute', backgroundColor: '#46525E'},
+    recText1:{width: 237, height: 23, left: 61, top: 197, position: 'absolute', textAlign: 'center', color: '#FFFBFB', fontSize: 20, fontFamily: 'Roboto', fontWeight: '700'},
+
+    textBox1:{width: 250, height: 40, left: 95, top: 305, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
+    textField1:{width: 200, height: 40, left: 20, top: 0, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400',},
+    textBox2:{width: 250, height: 40, left: 95, top: 360, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
+    textField2:{width: 200, height: 40, left: 20, top: 0, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400',},
+    textBox3:{width: 250, height: 40, left: 95, top: 415, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
+    textField3:{width: 200, height: 40, left: 20, top: 0, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400',},
 
 })
 export default Outpatient
