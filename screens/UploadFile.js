@@ -1,32 +1,20 @@
 import { useNavigation } from '@react-navigation/native';
+import * as DocumentPicker from 'expo-document-picker';
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import ;
 
 const UploadFileTab = ({onFileSelected}) => {
   const nav = useNavigation();
   const ViewFile = () => {
     nav.navigate('DisplayFile')
   }
-  const pickDocument = async () => {
-      try{
-        const result = await DocumentPicker.pick({
-          type: [DocumentPicker.types.pdf],
-        });
-      
-        onFileSelected(result);
-      }
-      catch (err){
-        if(DocumentPicker.isCancel(err)){
-          console.log('Upload cancelled');
-        }
-        else{
-          console.error('Error uploading');
-          Alert.alert('Error', 'Upload failed.');
-        }
-      }
-    };
+
+  const pickDocument = async() => {
+    let result = await DocumentPicker.getDocumentAsync({});
+    alert(result.uri);
+    console.log(result);
+  }
 
   
   return (
