@@ -2,13 +2,31 @@
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState } from 'react';
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 const Inpatient = () => {
     const nav = useNavigation();
 
     const goNext = () => {
-        nav.navigate('NotifHosp');
+        if(!name || !room || !num || !doc){
+            Alert.alert('WARNING', 'Please fill up the missing fields');
+        }
+        else{
+            Alert.alert(
+                'Confirmation',
+                'Do you wish to proceed?',
+                [
+                    {type:'Cancel', style: 'cancel'},
+                    {
+                        text: 'Confirm',
+                        onPress: () => {
+                            nav.navigate('NotifHosp');
+                        },
+                    },
+                ],
+                {cancelable:false}
+            );
+        }
     }
 
     const goBack = () => {
@@ -81,7 +99,7 @@ const Inpatient = () => {
                             onChangeText={(text) => setName(text)}
                             placeholder = {(isNameFocused || name) ? '': 'Name'}
                             placeholderColor = "#888"/>
-      </View>
+        </View>
         <View style={styles.textBox2}>
         <TextInput style={styles.textField2}
                             value={room}
@@ -89,7 +107,7 @@ const Inpatient = () => {
                             onFocus = {() => handleFocus('room')}
                             onBlur = {() => handleBlur('room')}
                             onChangeText={(text) => setRoom(text)}
-                            placeholder = {(isRoomFocused || room) ? '': 'Room'}
+                            placeholder = {(isRoomFocused || room) ? '': 'Room Number'}
                             placeholderColor = "#888"/>
         </View>
         <View style={styles.textBox3}>
@@ -126,11 +144,11 @@ const styles = StyleSheet.create({
     recOnere:{width: 350, height: 800, left: 40, top: 41, position: 'absolute', backgroundColor: '#BCBCBC'},
     title:{width: 248, height: 49, left: 140, top: 121, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 16, fontFamily: 'Roboto', fontWeight: '700'},
     image:{width: 68, height: 66, left: 80, top: 107, position: 'absolute'},
-    button2:{width: 80, height: 40, left: 222, top: 480, position: 'absolute', backgroundColor: '#46525E', borderRadius: 100},
-    button1:{width: 80, height: 40, left: 133, top: 480, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 100},
+    button2:{width: 80, height: 40, left: 222, top: 530, position: 'absolute', backgroundColor: '#46525E', borderRadius: 100},
+    button1:{width: 80, height: 40, left: 133, top: 530, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 100},
     recTwo:{width: 350, height: 80, left: 40, top: 661, position: 'absolute', backgroundColor: '#8C8C8C'},
-    buttonText2:{width: 40, height: 20, left: 150, top: 490, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
-    buttonText1:{width: 40, height: 20, left: 240, top: 490, position: 'absolute', textAlign: 'center', color: 'white', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
+    buttonText2:{width: 40, height: 20, left: 150, top: 540, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
+    buttonText1:{width: 40, height: 20, left: 240, top: 540, position: 'absolute', textAlign: 'center', color: 'white', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
     recThree:{width: 350, height: 100, left: 40, top: 741, position: 'absolute', backgroundColor: '#46525E'},
     recFour:{width: 350, height: 41, left: 40, top: 41, position: 'absolute', backgroundColor: '#46525E'},
     header:{width: 350, height: 48, left: 40, top: 200, position: 'absolute', backgroundColor: '#46525E'},
@@ -142,6 +160,8 @@ const styles = StyleSheet.create({
     textField2:{width: 200, height: 40, left: 20, top: 0, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400',},
     textBox3:{width: 250, height: 40, left: 95, top: 415, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
     textField3:{width: 200, height: 40, left: 20, top: 0, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400',},
+    textBox4:{width: 250, height: 40, left: 95, top: 470, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
+    textField4:{width: 200, height: 40, left: 20, top: 0, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400',},
 
 })
 export default Inpatient;

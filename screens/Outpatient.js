@@ -1,14 +1,33 @@
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState } from 'react';
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 const Outpatient = () => {
     const nav = useNavigation();
 
+
     const goNext = () => {
-        nav.navigate('NotifHosp');
-    }
+        if(!name || !num || !date){
+            Alert.alert('WARNING', 'Please fill up the missing fields');
+        }
+        else{
+            Alert.alert(
+                'Confirmation',
+                'Do you wish to proceed?',
+                [
+                    {type:'Cancel', style: 'cancel'},
+                    {
+                        text: 'Confirm',
+                        onPress: () => {
+                            nav.navigate('NotifHosp');
+                        },
+                    },
+                ],
+                {cancelable:false}
+            );
+        }
+    };
 
     const goBack = () => {
         nav.navigate('Notif');

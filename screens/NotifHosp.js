@@ -1,17 +1,24 @@
+import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const NotifHosp = () => {
+  const nav = useNavigation();
+  
+  const backHome = () => {
+    nav.navigate('Home');
+  }
+
   return (
 <View>
     <LinearGradient colors={['#00598B' , '#AD6868']} style={styles.something}>
         <View style={styles.recOne} />
         <Text style={styles.title}>KaraCare EMERGENCY SYSTEM</Text>
         <Image style={styles.image} source={require('../assets/karacare.png')} />
-        <View style={styles.button} />
+        <View style={styles.recTwo}/>
         <View style={styles.greenthing} />
-        <View style={styles.recTwo}></View>
+        <TouchableOpacity style={styles.button} onPress={backHome}/>
         <Text style={styles.buttonText}>HOME</Text>
         <Text style={styles.confirm}>Form sent.</Text>
         <View style={styles.recThree}></View>
