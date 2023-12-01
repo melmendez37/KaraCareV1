@@ -1,5 +1,14 @@
 {
+
   "expo": {
+    "plugins": [
+      [
+        "expo-document-picker",
+        {
+          "iCloudContainerEnvironment": "Production"
+        }
+      ]
+    ],
     "name": "TestApp",
     "slug": "TestApp",
     "version": "1.0.0",
