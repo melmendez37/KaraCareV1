@@ -29,6 +29,17 @@ const DisplayFile = () => {
                 <TouchableOpacity style={styles.buttonTwo} onPress={cancel}/>
                 <Text style={styles.buttonTwoText}>Cancel</Text>
                 <Text style={styles.buttonOneText}>Next</Text>
+
+                <View style={{ flex: 1, marginTop: 20 }}>
+                    {pdfUri && (
+                        <PDF
+                            source={{ uri: pdfUri, cache: true }}
+                            onLoad={() => console.log(`PDF loaded from ${pdfUri}`)}
+                            onError={(error) => console.log('Cannot render PDF', error)}
+                            style={{ flex: 1, width: '100%' }}
+                        />
+                    )}
+                </View>
             </LinearGradient>
     </View>
     )
