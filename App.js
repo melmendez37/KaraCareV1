@@ -1,6 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
+import DisplayFile from './screens/DisplayFile.js';
 import ExternalRepsonderForm from './screens/ExtRes.js';
 import MedStaffForm from './screens/ExtRes2.js';
 import ExtResNotification from './screens/ExternalNotification.js';
@@ -40,6 +41,7 @@ const App = () =>{
           <Stack.Screen name = 'UploadFileTab' component={UploadFileTab}/>
           <Stack.Screen name = 'Notif' component={Notif}/>
           <Stack.Screen name = 'NotifHosp' component={NotifHosp}/>
+          <Stack.Screen name = 'DisplayFile' component={DisplayFile}/>
         </Stack.Navigator>
       </NavigationContainer>
   );
