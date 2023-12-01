@@ -32,7 +32,7 @@ const MedStaffForm = () => {
                     {
                         text: 'Confirm',
                         onPress: () => {
-                            nav.navigate('ExtResNotification');
+                            nav.navigate('MedStaffNotif');
                         },
                     },
                 ],

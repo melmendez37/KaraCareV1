@@ -13,11 +13,11 @@ const Home = () => {
     }
 
     const gotoNotifyHospital = () => {
-        nav.navigate('ExternalResponderForm');
+        nav.navigate('Notif');
     }
 
     const gotoSendResults = () => {
-        nav.navigate('ExternalResponderForm')
+        nav.navigate('SendRes')
     }
 
     return(
@@ -30,8 +30,8 @@ const Home = () => {
                 <Image style={styles.image} source={localImage} />
                 <View style={styles.logoutButton} />
                 <TouchableOpacity style={styles.button1} onPress={gotoForm} />
-                <TouchableOpacity style={styles.button2} />
-                <TouchableOpacity style={styles.button3} />
+                <TouchableOpacity style={styles.button2} onPress={gotoNotifyHospital}/>
+                <TouchableOpacity style={styles.button3} onPress={gotoSendResults}/>
                 <Text style={styles.header}>HOME</Text>
                 <View style={styles.rec}></View>
                 

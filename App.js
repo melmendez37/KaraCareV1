@@ -8,20 +8,15 @@ import Home from './screens/Home.js';
 import Inpatient from './screens/Inpatient.js';
 import LoginScreen from './screens/Login.js';
 import MedStaffNotif from './screens/MedStaffNotif.js';
+import Notif from './screens/Notif.js';
 import NotifHosp from './screens/NotifHosp.js';
-import SignUpScreen from './screens/SignUp.js';
-import Splash from './screens/Splash.js';
-import WelcomePage from './screens/Welcome.js';
 import Outpatient from './screens/Outpatient.js';
 import SendRes from './screens/SendRes.js';
+import SignUpScreen from './screens/SignUp.js';
+import Splash from './screens/Splash.js';
 import UploadFileTab from './screens/UploadFile.js';
-import Notif from './screens/Notif.js';
+import WelcomePage from './screens/Welcome.js';
 
-
-/*
-import MedStaffForm from './screens/ExtRes2.js';
-import Home from './screens/Home.js';
-*/
 const Stack = createStackNavigator();
 
 const App = () =>{
