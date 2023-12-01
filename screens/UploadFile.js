@@ -1,24 +1,25 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
-import React from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
+import React from 'react';
+import { Image, StyleSheet, Text, View } from 'react-native';
+
 
 const UploadFileTab = () => {
   return (
     <View style={styles.container}>
-<LinearGradient colors={[ '#00598B' , '#AD6868' ]} style={styles.something}>
-    <View style={styles.recOne} />
-    <Text style={styles.title}>KaraCare EMERGENCY SYSTEM</Text>
-    <Image style={styles.image} source= {require("../assets/karacare.png")} />
-    <View style={styles.recTwo}></View>
-    <View style={styles.cancelButton} />
-    <View style={styles.fileBox} />
-    <Text style={styles.header}>SEND MEDICAL RESULTS</Text>
-    <View style={styles.recThree}></View>
-    <Text style={styles.fileBoxText}>Insert here (.pdf only)</Text>
-    <Text style={styles.cancelButtonText}>Cancel</Text>
-    <View style={styles.recFour}></View>
-    <View style={styles.recFive}></View>
-</LinearGradient>
+      <LinearGradient colors={[ '#00598B' , '#AD6868' ]} style={styles.something}>
+          <View style={styles.recOne} />
+          <Text style={styles.title}>KaraCare EMERGENCY SYSTEM</Text>
+          <Image style={styles.image} source= {require("../assets/karacare.png")} />
+          <View style={styles.recTwo}></View>
+          <View style={styles.cancelButton}/>
+          <View style={styles.fileBox} />
+          <Text style={styles.header}>SEND MEDICAL RESULTS</Text>
+          <View style={styles.recThree}></View>
+          <Text style={styles.fileBoxText}>Insert here (.pdf only)</Text>
+          <Text style={styles.cancelButtonText}>Cancel</Text>
+          <View style={styles.recFour}></View>
+          <View style={styles.recFive}></View>
+      </LinearGradient>
 </View>
   )
 }

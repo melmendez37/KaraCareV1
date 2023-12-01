@@ -36,9 +36,10 @@ const App = () =>{
           <Stack.Screen name = 'MedStaffForm' component={MedStaffForm}/>
           <Stack.Screen name = 'SignUpScreen' component={SignUpScreen}/>
           <Stack.Screen name = 'MedStaffNotif' component={MedStaffNotif}/>
-          <Stack.Screen name = 'SendRes' component={SendRes}></Stack.Screen>
-          <Stack.Screen name = 'UploadFileTab' component={UploadFileTab}></Stack.Screen>
-          <Stack.Screen name = 'Notif' component={Notif}></Stack.Screen>
+          <Stack.Screen name = 'SendRes' component={SendRes}/>
+          <Stack.Screen name = 'UploadFileTab' component={UploadFileTab}/>
+          <Stack.Screen name = 'Notif' component={Notif}/>
+          <Stack.Screen name = 'NotifHosp' component={NotifHosp}/>
         </Stack.Navigator>
       </NavigationContainer>
   );

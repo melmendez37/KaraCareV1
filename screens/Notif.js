@@ -12,6 +12,9 @@ const Notif = () => {
   const patientOut = () => {
     nav.navigate('Outpatient');
   }
+  const Home = () => {
+    nav.navigate('Home')
+  }
 
   return (
   <View style = {styles.container}>
@@ -23,7 +26,7 @@ const Notif = () => {
         <View style={styles.logOffButton} />
         <View style={styles.recTwo}></View>
         
-        <View style={styles.homeButton} />
+        <TouchableOpacity style = {styles.homeButton} onPress={Home}/>
         <Text style={styles.homeText}>Home</Text>
         <Text style={styles.header}>NOTIFY HOSPITAL</Text>
         <View style={styles.recThree}></View>

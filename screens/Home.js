@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     logOut: {width: 46, height: 19, left: 300, top: 220, position: 'absolute', textAlign: 'center', color: '#D9D9D9', fontSize: 10, fontFamily: 'Roboto', fontWeight: '700'},
     button1: {width: 150, height: 100, left: 135, top: 320, position: 'absolute', backgroundColor: '#46525E', borderRadius: 20},
     button2: {width: 150, height: 100, left: 135, top: 435, position: 'absolute', backgroundColor: '#8C8C8C', borderRadius: 20},
-    button3: {width: 150, height: 100, left: 135, top: 550, position: 'absolute', backgroundColor: '#8C8C8C', borderRadius: 20},
+    button3: {width: 150, height: 100, left: 135, top: 550, position: 'absolute', backgroundColor: '#46525E', borderRadius: 20},
     button1text: {width: 170, height: 40, left: 125, top: 360, position: 'absolute', textAlign: 'center', color: '#FFFDFD', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
     button2text: {width: 170, height: 40, left: 125, top: 475, position: 'absolute', textAlign: 'center', color: '#FFFBFB', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
     button3text: {width: 170, height: 40, left: 125, top: 580, position: 'absolute', textAlign: 'center', color: '#FFFBFB', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
