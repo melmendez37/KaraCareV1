@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState } from 'react';
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 const SendRes = () => {
   const nav = useNavigation();
@@ -19,20 +19,42 @@ const SendRes = () => {
     const next = () => {
       nav.navigate('UploadFileTab');
     }
-    const handleFocus = (field) => {
-      switch (field){
-          case 'name':
-              setIsNameFocused(true);
-              break;
-          case 'mrn':
-              setIsMrnFocused(true);
-              break;
-          case 'date':
-            setIsDateFocused(true);
-          default:
-              break;
+    const goNext = () => {
+      if(!name || !mrn || !date){
+          Alert.alert('WARNING', 'Please fill up the missing fields');
+      }
+      else{
+          Alert.alert(
+              'Confirmation',
+              'Do you wish to proceed?',
+              [
+                  {type:'Cancel', style: 'cancel'},
+                  {
+                      text: 'Confirm',
+                      onPress: () => {
+                          nav.navigate('SentResNotif');
+                      },
+                  },
+              ],
+              {cancelable:false}
+          );
       }
   }
+
+  const handleFocus = (field) => {
+    switch (field){
+        case 'name':
+            setIsNameFocused(true);
+            break;
+        case 'mrn':
+            setIsMrnFocused(true);
+            break;
+        case 'date':
+          setIsDateFocused(true);
+        default:
+            break;
+    }
+}
 
   const handleBlur = (field) => {
       switch (field){
@@ -57,7 +79,7 @@ const SendRes = () => {
       <Image style={styles.image} source={require('../assets/karacare.png')}  />
       <View style={styles.nextButton} />
       <View style={styles.cancelButton} />
-      <TouchableOpacity style={styles.nextButton} onPress={next}/>
+      <TouchableOpacity style={styles.nextButton} onPress={goNext}/>
       <TouchableOpacity style={styles.cancelButton} onPress={cancel}/>
       <Text style={styles.nextButtonText}>Next</Text>
       <Text style={styles.cancelButtonText}>Cancel</Text>
