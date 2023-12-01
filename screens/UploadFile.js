@@ -1,9 +1,10 @@
 import { useNavigation } from '@react-navigation/native';
 import * as DocumentPicker from 'expo-document-picker';
 import { LinearGradient } from 'expo-linear-gradient';
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import * as DocumentPicker from 'expo-document-picker';
+import { storage } from '../firebaseConfig';  
 
 const UploadFileTab = ({onFileSelected}) => {
   const nav = useNavigation();
@@ -11,9 +12,12 @@ const UploadFileTab = ({onFileSelected}) => {
     nav.navigate('DisplayFile')
   }
 
+  const [file, setFile] = useState(null)
+
   const pickDocument = async() => {
     let result = await DocumentPicker.getDocumentAsync({});
     alert(result.uri);
+    setFile(result.file[0]);
     console.log(result);
   }
 
