@@ -5,11 +5,22 @@ import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } fro
 
 const Outpatient = () => {
     const nav = useNavigation();
-
+    const [isNameFocused, setIsNameFocused] = useState(false);
+    const [name, setName] = useState('');
+    const [isNumFocused, setIsNumFocused] = useState(false);
+    const [num, setNum] = useState('');
+    const [isDateFocused, setIsDateFocused] = useState(false);
+    const [date, setDate] = useState('');
 
     const goNext = () => {
         if(!name || !num || !date){
             Alert.alert('WARNING', 'Please fill up the missing fields');
+        }
+        else if(!/^\d+$/.test(num) || !num.startsWith('09')){
+            Alert.alert('INPUT ERROR!', 'Please enter a valid phone number Ex.(09123456789)')
+        }
+        else if(num.toString().length != 11){
+            Alert.alert('INPUT ERROR!', 'Number must be 11 digits.')
         }
         else{
             Alert.alert(
@@ -32,13 +43,7 @@ const Outpatient = () => {
     const goBack = () => {
         nav.navigate('Notif');
     }
-    const [isNameFocused, setIsNameFocused] = useState(false);
-    const [name, setName] = useState('');
-    const [isNumFocused, setIsNumFocused] = useState(false);
-    const [num, setNum] = useState('');
-    const [isDateFocused, setIsDateFocused] = useState(false);
-    const [date, setDate] = useState('');
-
+    
     const handleFocus = (field) => {
         switch (field){
             case 'name':
@@ -48,12 +53,12 @@ const Outpatient = () => {
                 setIsNumFocused(true);
                 break;
             case 'date':
-              setIsDateFocused(true);
+                setIsDateFocused(true);
             default:
                 break;
         }
     }
-  
+
     const handleBlur = (field) => {
         switch (field){
             case 'name':
@@ -69,55 +74,71 @@ const Outpatient = () => {
         }
     }
 
-  return (
-<View styles={styles.container}>
-    <LinearGradient colors={[ '#00598B', '#AD6868']} style={styles.something}>
-        <View style={styles.recOnere} />
-        <Text style={styles.title}>KaraCare EMERGENCY SYSTEM</Text>
-        <Image style={styles.image} source= {require("../assets/karacare.png")} />
-        <View style={styles.recTwo}/>
-        <TouchableOpacity style={styles.button1} onPress={goNext}/>
-        <TouchableOpacity style={styles.button2} onPress={goBack}/>
-        <Text style={styles.buttonText2}>Next</Text>
-        <Text style={styles.buttonText1}>Back</Text>
-        <View style={styles.recThree}></View>
-        <View style={styles.recFour}></View>
-        <View style={styles.header}></View>
-        <Text style={styles.recText1}>OUTPATIENT</Text>
-        <View style={styles.textBox1}>
-        <TextInput style={styles.textField1}
-                            value={name}
-                            textAlign= "center"
-                            onFocus = {() => handleFocus('name')}
-                            onBlur = {() => handleBlur('name')}
-                            onChangeText={(text) => setName(text)}
-                            placeholder = {(isNameFocused || name) ? '': 'Name'}
-                            placeholderColor = "#888"/>
-      </View>
-        <View style={styles.textBox2}>
-        <TextInput style={styles.textField2}
-                            value={date}
-                            textAlign= "center"
-                            onFocus = {() => handleFocus('date')}
-                            onBlur = {() => handleBlur('date')}
-                            onChangeText={(text) => setDate(text)}
-                            placeholder = {(isDateFocused || date) ? '': 'Date of Discharge'}
-                            placeholderColor = "#888"/>
+    const handleDateChange = (text) => {
+        let formattedDate = text.replace(/\D/g, '');
+        if (formattedDate.length > 2) {
+            formattedDate = `${formattedDate.slice(0, 2)}/${formattedDate.slice(2)}`;
+        }
+        if (formattedDate.length > 5) {
+            formattedDate = `${formattedDate.slice(0, 5)}/${formattedDate.slice(5)}`;
+        }
+        if (formattedDate.length > 10) {
+            formattedDate = formattedDate.slice(0, 10)
+        }
+        setDate(formattedDate);
+        }
+        
+    
+
+    return (
+        <View styles={styles.container}>
+            <LinearGradient colors={[ '#00598B', '#AD6868']} style={styles.something}>
+                <View style={styles.recOnere} />
+                <Text style={styles.title}>KaraCare EMERGENCY SYSTEM</Text>
+                <Image style={styles.image} source= {require("../assets/karacare.png")} />
+                <View style={styles.recTwo}/>
+                <TouchableOpacity style={styles.button1} onPress={goNext}/>
+                <TouchableOpacity style={styles.button2} onPress={goBack}/>
+                <Text style={styles.buttonText2}>Next</Text>
+                <Text style={styles.buttonText1}>Back</Text>
+                <View style={styles.recThree}></View>
+                <View style={styles.recFour}></View>
+                <View style={styles.header}></View>
+                <Text style={styles.recText1}>OUTPATIENT</Text>
+                <View style={styles.textBox1}>
+                <TextInput style={styles.textField1}
+                                    value={name}
+                                    textAlign= "center"
+                                    onFocus = {() => handleFocus('name')}
+                                    onBlur = {() => handleBlur('name')}
+                                    onChangeText={(text) => setName(text)}
+                                    placeholder = {(isNameFocused || name) ? '': 'Name'}
+                                    placeholderColor = "#888"/>
+            </View>
+            <View style={styles.textBox2}>
+                <TextInput style={styles.textField2}
+                                    value={date}
+                                    textAlign= "center"
+                                    onFocus = {() => handleFocus('date')}
+                                    onBlur = {() => handleBlur('date')}
+                                    onChangeText={handleDateChange}
+                                    placeholder = {(isDateFocused || date) ? '': 'Date of Discharge'}
+                                    placeholderColor = "#888"/>
+            </View>
+                <View style={styles.textBox3}>
+                <TextInput style={styles.textField3}
+                                    value={num}
+                                    textAlign= "center"
+                                    onFocus = {() => handleFocus('num')}
+                                    onBlur = {() => handleBlur('num')}
+                                    onChangeText={(text) => setNum(text)}
+                                    placeholder = {(isNumFocused || num) ? '': 'Phone Number'}
+                                    placeholderColor = "#888"/>
+                </View>
+            </LinearGradient>
         </View>
-        <View style={styles.textBox3}>
-        <TextInput style={styles.textField3}
-                            value={num}
-                            textAlign= "center"
-                            onFocus = {() => handleFocus('num')}
-                            onBlur = {() => handleBlur('num')}
-                            onChangeText={(text) => setNum(text)}
-                            placeholder = {(isNumFocused || num) ? '': 'Phone Number'}
-                            placeholderColor = "#888"/>
-        </View>
-    </LinearGradient>
-</View>
-  )
-}
+    )
+    }
 
 
 

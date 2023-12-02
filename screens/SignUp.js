@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 
 const localImage = require('../assets/karacare.png')
@@ -14,7 +14,13 @@ const SignUpScreen = () => {
     const [pass, setPass] = useState('');
 
     const handleSignUp = () => {
-        nav.navigate('LoginScreen');
+            if(!user || !pass){
+                Alert.alert('WARNING', 'Please fill up the fields to login');
+            }
+            else{
+                nav.navigate('LoginScreen');
+            }
+
     }
 
     const handleFocus = (field) => {
@@ -51,7 +57,7 @@ const SignUpScreen = () => {
                 <Image style={styles.image} source = {localImage}/>
                 <View style={styles.recTwo}/>
                 <View style={styles.header}></View>
-                <Text style={styles.headerText}>LOGIN</Text>
+                <Text style={styles.headerText}>SIGNUP</Text>
                 
                 <TouchableOpacity style = {styles.buttonTwo} onPress={handleSignUp}/>
                 <Text style={styles.signupText}>Sign Up</Text>
@@ -94,10 +100,8 @@ const styles = StyleSheet.create({
     image: {width: 68, height: 66, left: 76, top: 140, position: 'absolute'},
     title: {width: 200, height: 49, left: 166, top: 150, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 18, fontFamily: 'Roboto', fontWeight: '700'},
 
-    buttonOne: {width: 70, height: 40, left: 133, top: 450, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
-    buttonTwo: {width: 70, height: 40, left: 229, top: 450, position: 'absolute', backgroundColor: '#46525E', borderRadius: 50},
-    loginText: {width: 50, height: 20, left: 142, top: 459, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 13, fontFamily: 'Roboto', fontWeight: '700'},
-    signupText: {width: 50, height: 20, left: 237, top: 459, position: 'absolute', textAlign: 'center', color: '#D9D9D9', fontSize: 13, fontFamily: 'Roboto', fontWeight: '700'},
+    buttonTwo: {width: 70, height: 40, left: 180, top: 450, position: 'absolute', backgroundColor: '#46525E', borderRadius: 50},
+    signupText: {width: 50, height: 20, left: 190, top: 459, position: 'absolute', textAlign: 'center', color: '#D9D9D9', fontSize: 13, fontFamily: 'Roboto', fontWeight: '700'},
 
     headerText: {width: 151, height: 40, left: 140, top: 235, position: 'absolute', textAlign: 'center', color: '#FFFDFD', fontSize: 25, fontFamily: 'Roboto', fontWeight: '700'},
     header: {width: 350, height: 70, left: 40, top: 222, position: 'absolute', backgroundColor: '#46525E'},
@@ -106,8 +110,8 @@ const styles = StyleSheet.create({
     pass: {width: 250, height: 40, left: 0, top: 0, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
     recFour: {width: 350, height: 200, left: 40, top: 665, position: 'absolute', backgroundColor: '#46525E'},
     recFive: {width: 350, height: 50, left: 40, top: 65, position: 'absolute', backgroundColor: '#46525E'},
-    fieldOne: {width: 250, height: 40, left: 90, top: 310, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
-    fieldTwo: {width: 250, height: 40, left: 90, top: 370, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
+    fieldOne: {width: 250, height: 40, left: 90, top: 320, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
+    fieldTwo: {width: 250, height: 40, left: 90, top: 380, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
 
 
 })
