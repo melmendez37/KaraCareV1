@@ -1,6 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
+import { auth } from '../firebaseConfig'
+import {signInWithEmailAndPassword} from 'firebase/auth'
 import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 
@@ -13,12 +15,22 @@ const LoginScreen = () => {
     const [isPassFocused, setIsPassFocused] = useState(false);
     const [pass, setPass] = useState('');
 
-    const handleLogin = () => {
+
+    const handleLogin = async () => {
         if(!user || !pass){
             Alert.alert('WARNING', 'Please fill up the missing fields');
         }
-        else{
-            nav.navigate('Home');
+        else{ 
+            try {
+                await signInWithEmailAndPassword(auth, user,pass)
+                if(auth?.currentUser != null){
+                    nav.navigate('Home'); 
+                }
+
+            } catch (error) {
+                console.log(error);
+            }     
+  
         }
     };
 

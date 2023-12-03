@@ -1,7 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { auth } from "../firebaseConfig";
 
 
 const localImage = require('../assets/karacare.png')
@@ -13,12 +15,14 @@ const SignUpScreen = () => {
     const [isPassFocused, setIsPassFocused] = useState(false);
     const [pass, setPass] = useState('');
 
-    const handleSignUp = () => {
+    const handleSignUp = async () => {
             if(!user || !pass){
                 Alert.alert('WARNING', 'Please fill up the fields to login');
             }
             else{
-                nav.navigate('LoginScreen');
+                await createUserWithEmailAndPassword(auth, user, pass)
+                    nav.navigate('LoginScreen');
+
             }
 
     }
