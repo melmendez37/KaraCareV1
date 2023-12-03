@@ -3,25 +3,23 @@ import * as DocumentPicker from 'expo-document-picker';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState } from 'react';
 import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import * as DocumentPicker from 'expo-document-picker';
 import { storage } from '../firebaseConfig';  
+import { ref, uploadBytes, getDownloadURL} from '@firebase/storage';
 
-const UploadFileTab = ({onFileSelected}) => {
+const UploadFileTab = () => {
   const nav = useNavigation();
   const ViewFile = () => {
     nav.navigate('DisplayFile')
   }
 
-  const [file, setFile] = useState(null)
+      const pickDocument = async () => {
 
-  const pickDocument = async() => {
-    let result = await DocumentPicker.getDocumentAsync({});
-    alert(result.uri);
-    setFile(result.file[0]);
-    console.log(result);
+        let result = await DocumentPicker.getDocumentAsync({})
+        const file = result.assets[0]
+        const storageRef = ref(storage, `Medical Results(Hypothethical)/${file.name}`); //LINE A
+        await uploadBytes(storageRef, file);
   }
 
-  
   return (
     <View style={styles.container}>
       <LinearGradient colors={[ '#00598B' , '#AD6868' ]} style={styles.something}>
