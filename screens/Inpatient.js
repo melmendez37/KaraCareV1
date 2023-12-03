@@ -8,8 +8,14 @@ const Inpatient = () => {
     const nav = useNavigation();
 
     const goNext = () => {
-        if(!name || !room || !num || !doc){
+        if(!name || !num || !room || !doc){
             Alert.alert('WARNING', 'Please fill up the missing fields');
+        }
+        else if(!/^\d+$/.test(num) || !num.startsWith('09')){
+            Alert.alert('INPUT ERROR!', 'Please enter a valid phone number Ex.(09123456789)')
+        }
+        else if(num.toString().length != 11){
+            Alert.alert('INPUT ERROR!', 'Number must be 11 digits.')
         }
         else{
             Alert.alert(
@@ -46,13 +52,13 @@ const Inpatient = () => {
             case 'name':
                 setIsNameFocused(true);
                 break;
+            case 'doc':
+                setIsDocFocused(true);
             case 'num':
                 setIsNumFocused(true);
                 break;
             case 'room':
                 setIsRoomFocused(true);
-            case 'doc':
-                setIsDocFocused(true);
             default:
                 break;
         }

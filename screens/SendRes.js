@@ -71,6 +71,20 @@ const SendRes = () => {
       }
   }
 
+  const handleDateChange = (text) => {
+    let formattedDate = text.replace(/\D/g, '');
+    if (formattedDate.length > 2) {
+        formattedDate = `${formattedDate.slice(0, 2)}/${formattedDate.slice(2)}`;
+    }
+    if (formattedDate.length > 5) {
+        formattedDate = `${formattedDate.slice(0, 5)}/${formattedDate.slice(5)}`;
+    }
+    if (formattedDate.length > 10) {
+        formattedDate = formattedDate.slice(0, 10)
+    }
+    setDate(formattedDate);
+    }
+
   return (
     <View style={styles.container}>
       <LinearGradient colors={['#00598B', '#AD6868']} style={styles.something}>
@@ -115,8 +129,8 @@ const SendRes = () => {
                             textAlign= "center"
                             onFocus = {() => handleFocus('date')}
                             onBlur = {() => handleBlur('date')}
-                            onChangeText={(text) => setDate(text)}
-                            placeholder = {(isDateFocused || date) ? '': 'Date of Result'}
+                            onChangeText={handleDateChange}
+                            placeholder = {(isDateFocused || date) ? '': 'Date of Discharge'}
                             placeholderColor = "#888"/>
       </View>
       </LinearGradient>

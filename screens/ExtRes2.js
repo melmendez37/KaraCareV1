@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     buttonTwo: {width: 70, height: 40, left: 229, top: 560, position: 'absolute', backgroundColor: '#46525E', borderRadius: 50},
     header: {width: 240, height: 60, left: 96, top: 260, position: 'absolute', textAlign: 'center', color: '#FFFDFD', fontSize: 24, fontFamily: 'Roboto', fontWeight: '700'},
     recThree: {width: 350, height: 141, left: 40, top: 724, position: 'absolute', backgroundColor: '#8C8C8C'},
-    recFour: {width: 350, height: 64, left: 40, top: 65, position: 'absolute', backgroundColor: '#8C8C8C'},
+    recFour: {width: 350, height: 60, left: 40, top: 65, position: 'absolute', backgroundColor: '#8C8C8C'},
     confirm: {width: 40, height: 20, left: 147, top: 567, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
     delete: {width: 40, height: 20, left: 242, top: 567, position: 'absolute', textAlign: 'center', color: '#D9D9D9', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
     recFive: {width: 170, height: 26, left: 125, top: 340, position: 'absolute'},
