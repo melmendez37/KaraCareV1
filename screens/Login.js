@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
 import { auth } from '../firebaseConfig'
-import {signInWithEmailAndPassword} from 'firebase/auth'
+import {signInWithEmailAndPassword} from 'firebase/auth';
 import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 
@@ -23,6 +23,7 @@ const LoginScreen = () => {
         else{ 
             try {
                 await signInWithEmailAndPassword(auth, user,pass)
+                
                 if(auth?.currentUser != null){
                     nav.navigate('Home'); 
                 }
