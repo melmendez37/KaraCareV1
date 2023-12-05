@@ -72,11 +72,14 @@ const SendRes = () => {
             setIsMrnFocused(true);
             break;
         case 'date':
-          setIsDateFocused(true);
+            setIsDateFocused(true);
+            break;
         case 'add':
             setIsAddFocused(true);
+            break;
         case 'cond':
             setIsCondFocused(true);
+            break;
         default:
             break;
     }
@@ -92,10 +95,13 @@ const SendRes = () => {
               break;
           case 'date':
               setIsDateFocused(false);
+              break;
           case 'add':
               setIsAddFocused(false);
+              break;
           case 'cond':
               setIsCondFocused(false);
+              break;
           default:
               break;
       }
@@ -198,10 +204,10 @@ const styles = StyleSheet.create({
     image:{width: 68, height: 66, left: 67, top: 112, position: 'absolute'},
     nextButton:{width: 80, height: 40, left: 133, top: 580, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 100},
     cancelButton:{width: 80, height: 40, left: 222, top: 580, position: 'absolute', backgroundColor: '#46525E', borderRadius: 100},
-    nextButtonText:{width: 40, height: 20, left: 147, top: 590, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
-    cancelButtonText:{width: 50, height: 20, left: 230, top: 590, position: 'absolute', textAlign: 'center', color: '#D9D9D9', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
+    nextButtonText:{width: 40, height: 20, left: 152, top: 590, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
+    cancelButtonText:{width: 50, height: 20, left: 235, top: 590, position: 'absolute', textAlign: 'center', color: '#D9D9D9', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
     recTwo:{width: 350, height: 80, left: 40, top: 190, position: 'absolute', backgroundColor: '#46525E'},
-    header:{width: 300, height: 25, left: 62, top: 212, position: 'absolute', textAlign: 'center', color: '#FFFBFB', fontSize: 22, fontFamily: 'Roboto', fontWeight: '700', },
+    header:{width: 300, height: 28, left: 62, top: 212, position: 'absolute', textAlign: 'center', color: '#FFFBFB', fontSize: 24, fontFamily: 'Roboto', fontWeight: '700', },
     recThree:{width: 350, height: 60, left: 40, top: 39, position: 'absolute', backgroundColor: '#46525E'},
     recFour:{width: 350, height: 80, left: 40, top: 645, position: 'absolute', backgroundColor: '#8C8C8C'},
     recFive:{width: 350, height: 115, left: 40, top: 725, position: 'absolute', backgroundColor: '#46525E'},

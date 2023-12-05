@@ -1,14 +1,15 @@
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import { signOut } from "firebase/auth";
-import React from "react";
-import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import { ActivityIndicator, Alert, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { auth } from "../firebaseConfig";
 
 const localImage = require('../assets/karacare.png');
 
 const Home = () => {
     const nav = useNavigation();
+    
 
     const gotoForm = () => {
         nav.navigate('MedStaffForm');
@@ -22,6 +23,8 @@ const Home = () => {
         nav.navigate('SendRes')
     }
 
+    const [load, setLoad] = useState(false);
+
     const goLogout = () => {
         Alert.alert(
             'Confirmation',
@@ -31,9 +34,17 @@ const Home = () => {
                 {
                     text: 'Logout',
                     onPress: async () => {
-                        await signOut(auth)
-                        if(auth.currentUser == null){
-                            nav.navigate('LoginScreen');
+                        try{
+                            await signOut(auth)
+                            setTimeout(() => {
+                                if(auth.currentUser == null){
+                                    nav.navigate('LoginScreen');
+                                    }
+                            }, 1000);
+                        }catch(error){
+                            Alert.alert('ERROR', 'Logout Error');
+                        }finally{
+                            setLoad(true);
                         }
                         
                     },
@@ -64,6 +75,12 @@ const Home = () => {
                 <Text style={styles.button3text}>SEND MEDICAL RESULTS</Text>
                 <Text style={styles.logOut}>Log Out</Text>
                 
+                {load &&(
+                    <View style={styles.loadBox}>
+                        <Text style = {{ color: '#fff', marginLeft: 10, fontSize: 24, fontFamily: 'Roboto' }}>Loading...</Text>
+                        <ActivityIndicator size="large" color="#fff"/>
+                    </View>
+                )}
             </LinearGradient>
         </View>
     )
@@ -86,7 +103,9 @@ const styles = StyleSheet.create({
     recFour: {width: 350, height: 50, left: 40, top: 65, position: 'absolute', backgroundColor: '#46525E'},
     title: {width: 248, height: 49, left: 120, top: 145, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 16, fontFamily: 'Roboto', fontWeight: '700'  },
     image: {width: 68, height: 66, left: 70, top: 130, position: 'absolute'},
-    logoutButton: {width: 70, height: 21, left: 290, top: 230, position: 'absolute', backgroundColor: '#8C8C8C', borderRadius: 20}
+    logoutButton: {width: 70, height: 21, left: 290, top: 230, position: 'absolute', backgroundColor: '#8C8C8C', borderRadius: 20},
+    loadBox: {flexDirection: 'row', width: 300, height: 100, left: 65, top: 400, justifyContent: 'center', alignItems: 'center', backgroundColor: '#444444', borderRadius: 20},
+    
 })
 
 export default Home;

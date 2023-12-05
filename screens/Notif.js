@@ -30,11 +30,9 @@ const Notif = () => {
         <View style={styles.recTwo}></View>
         
         <TouchableOpacity style = {styles.homeButton} onPress={Home}/>
-        <TouchableOpacity style = {styles.logOffButton} onPress={Logout}/>
         <Text style={styles.homeText}>Home</Text>
         <Text style={styles.header}>NOTIFY HOSPITAL</Text>
         <View style={styles.recThree}></View>
-        <Text style={styles.logOffText}>Log Off</Text>
         <TouchableOpacity style={styles.button1} onPress={patientIn}/>
         <TouchableOpacity style={styles.button2} onPress={patientOut}/>
         <Text style={styles.button1text}>INPATIENT</Text>
@@ -56,12 +54,10 @@ const styles = StyleSheet.create({
     title:{width: 233, height: 49, left: 131, top: 117, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 16, fontFamily: 'Roboto', fontWeight: '700', },
     image:{width: 68, height: 66, left: 59, top: 103, position: 'absolute'},
     recTwo:{width: 350, height: 70, left: 40, top: 190, position: 'absolute', backgroundColor: '#46525E'},
-    logOffButton:{width: 70, height: 21, left: 290, top: 215, position: 'absolute', backgroundColor: '#8C8C8C', borderRadius: 20},
     homeButton:{width: 70, height: 40, left: 175, top: 560, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
     homeText:{width: 40, height: 20, left: 190, top: 567, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
-    header:{width: 230, height: 30, left: 50, top: 212, position: 'absolute', textAlign: 'center', color: '#FFFBFB', fontSize: 20, fontFamily: 'Roboto', fontWeight: '700', },
+    header:{width: 230, height: 30, left: 100, top: 212, position: 'absolute', textAlign: 'center', color: '#FFFBFB', fontSize: 20, fontFamily: 'Roboto', fontWeight: '700', },
     recThree:{width: 350, height: 156, left: 40, top: 684, position: 'absolute', backgroundColor: '#46525E'},
-    logOffText:{width: 50, height: 19, left: 300, top: 217, position: 'absolute', textAlign: 'center', color: '#D9D9D9', fontSize: 10, fontFamily: 'Roboto', fontWeight: '700', },
     button1text: {width: 170, height: 40, left: 125, top: 360, position: 'absolute', textAlign: 'center', color: '#FFFDFD', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
     button2text: {width: 170, height: 40, left: 125, top: 475, position: 'absolute', textAlign: 'center', color: '#FFFBFB', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
     recFour:{width: 350, height: 41, left: 40, top: 40, position: 'absolute', backgroundColor: '#46525E'},

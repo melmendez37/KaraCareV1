@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import React, { useState } from "react";
-import { ActivityIndicator, Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Alert, BackHandler, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { auth } from '../firebaseConfig';
 
 
@@ -16,6 +16,18 @@ const LoginScreen = () => {
     const [pass, setPass] = useState('');
     const [load, setLoad] = useState(false);
 
+    const handleExitApp = () => {
+        Alert.alert('CONFIRM EXIT', 'Do you wanna exit the app?', [
+          {
+            text: 'Cancel',
+            style: 'cancel',
+          },
+          {
+            text: 'Exit',
+            onPress: () => BackHandler.exitApp(),
+          },
+        ]);
+      };
 
     const handleLogin = async () => {
         if(!user || !pass){
@@ -112,6 +124,9 @@ const LoginScreen = () => {
 
                     <View style={styles.recFour}/>
                     <View style={styles.recFive}/>
+                    <TouchableOpacity style={styles.exitButton} onPress={handleExitApp}/>
+                    <Text style={styles.exitText}>EXIT</Text>
+
 
                 {load &&(
                     <View style={styles.loadingPop}>
@@ -136,7 +151,7 @@ const styles = StyleSheet.create({
     loginText: {width: 50, height: 20, left: 142, top: 465, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 13, fontFamily: 'Roboto', fontWeight: '700'},
     signupText: {width: 50, height: 20, left: 237, top: 465, position: 'absolute', textAlign: 'center', color: '#D9D9D9', fontSize: 13, fontFamily: 'Roboto', fontWeight: '700'},
 
-    headerText: {width: 151, height: 40, left: 140, top: 235, position: 'absolute', textAlign: 'center', color: '#FFFDFD', fontSize: 25, fontFamily: 'Roboto', fontWeight: '700'},
+    headerText: {width: 151, height: 40, left: 120, top: 235, position: 'absolute', textAlign: 'center', color: '#FFFDFD', fontSize: 25, fontFamily: 'Roboto', fontWeight: '700'},
     header: {width: 350, height: 70, left: 40, top: 222, position: 'absolute', backgroundColor: '#46525E'},
     
     user: {width: 250, height: 40, left: 0, top: 0, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
@@ -147,7 +162,8 @@ const styles = StyleSheet.create({
     fieldTwo: {width: 250, height: 40, left: 90, top: 380, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
     loadingPop: {flexDirection:'row', width: 300, height: 100, left: 65, top: 400, justifyContent: 'center', alignItems: 'center', backgroundColor: '#444444', borderRadius: 20},
     loadingtext: {width: 151, height: 40, left: 0, top: 0, position: 'absolute', textAlign: 'center', color: '#FFFDFD', fontSize: 25, fontFamily: 'Roboto', fontWeight: '700'},
-
+    exitText: {width: 46, height: 19, left: 302, top: 248, position: 'absolute', textAlign: 'center', color: 'white', fontSize: 10, fontFamily: 'Roboto', fontWeight: '700'},
+    exitButton: {width: 70, height: 21, left: 290, top: 245, position: 'absolute', backgroundColor: '#8C8C8C', borderRadius: 20},
 })
 
 export default LoginScreen;

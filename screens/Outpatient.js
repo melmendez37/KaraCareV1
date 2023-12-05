@@ -109,7 +109,7 @@ const Outpatient = () => {
     
 
     return (
-        <View styles={styles.container}>
+        <View style={styles.container}>
             <LinearGradient colors={[ '#00598B', '#8FBC8F']} style={styles.something}>
                 <View style={styles.recOnere} />
                 <Text style={styles.title}>KaraCare EMERGENCY SYSTEM</Text>

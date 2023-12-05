@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, BackHandler, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const localImage = require('../assets/karacare.png')
 
@@ -17,6 +17,19 @@ const WelcomePage = () => {
         nav.navigate('LoginScreen')
     }
     
+    const handleExitApp = () => {
+        Alert.alert('CONFIRM EXIT', 'Do you wanna exit the app?', [
+          {
+            text: 'Cancel',
+            style: 'cancel',
+          },
+          {
+            text: 'Exit',
+            onPress: () => BackHandler.exitApp(),
+          },
+        ]);
+      };
+
     return(
         <View style = {styles.container}>
             <LinearGradient colors = {['#00598B', '#8FBC8F']} style = {styles.something}>
@@ -36,7 +49,10 @@ const WelcomePage = () => {
 
                 <View style={styles.welcomeContainer}>
                 <Text style={styles.welcomeText}>WELCOME</Text>
+                
                 </View>
+                <TouchableOpacity style={styles.exitButton} onPress={handleExitApp}/>
+                    <Text style={styles.exitText}>EXIT</Text>
             </LinearGradient>
         </View>
     )
@@ -56,7 +72,9 @@ const styles = StyleSheet.create({
     buttonText:{width: 100, height: 55, left: 165, top: 467, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
     buttonText2: {width: 100, height: 55, left: 165, top: 565, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
     welcomeContainer: {width: 151, height: 100, left: 135, top: 377, position: 'absolute', alignItems: 'center', display: 'inline-flex'},
-    welcomeText: {left: 5, width: 151, height: 50, textAlign: 'center', color: '#FFFDFD', fontSize: 25, fontFamily: 'Roboto', fontWeight: 'bold'},
+    welcomeText: {left: -35, width: 151, height: 50, textAlign: 'center', color: '#FFFDFD', fontSize: 25, fontFamily: 'Roboto', fontWeight: 'bold'},
+    exitText: {width: 46, height: 19, left: 290, top: 386, position: 'absolute', textAlign: 'center', color: 'white', fontSize: 10, fontFamily: 'Roboto', fontWeight: '700'},
+    exitButton: {width: 70, height: 21, left: 280, top: 383, position: 'absolute', backgroundColor: '#8C8C8C', borderRadius: 20},
 });
 
 export default WelcomePage;
