@@ -25,8 +25,7 @@ const ExternalRepsonderForm = () => {
             });
         } catch (error) {
             console.log(error)
-        }
-        
+        } 
     };
 
     const handleExternalResponder = () => {

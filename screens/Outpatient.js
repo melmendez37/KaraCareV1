@@ -2,8 +2,25 @@ import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState } from 'react';
 import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { db } from "../firebaseConfig";
+import { addDoc, collection} from "firebase/firestore"
 
 const Outpatient = () => {
+
+    const reportCollection = collection(db, "OutpatientRecords");
+
+    const sumbitReport = async() =>{
+        try {
+            await addDoc(reportCollection, {
+                Name: name,
+                DischargeDate: date,
+                PhoneNumber: num,
+            });
+        } catch (error) {
+            console.log(error)
+        } 
+    };
+
     const nav = useNavigation();
     const [isNameFocused, setIsNameFocused] = useState(false);
     const [name, setName] = useState('');
@@ -31,6 +48,7 @@ const Outpatient = () => {
                     {
                         text: 'Confirm',
                         onPress: () => {
+                            sumbitReport()
                             nav.navigate('NotifHosp');
                         },
                     },
