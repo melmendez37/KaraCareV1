@@ -24,7 +24,6 @@ const LoginScreen = () => {
         else{ 
             try {
                 setLoad(true);
-                
                 await signInWithEmailAndPassword(auth, user,pass);
                 if(auth?.currentUser != null){
                     nav.navigate('Home');
@@ -69,8 +68,6 @@ const LoginScreen = () => {
                 break;
         }
     }
-
-    console.log(load);
 
     return(
         <View style={styles.container}>

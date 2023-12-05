@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
-import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { auth } from "../firebaseConfig";
 
 
@@ -14,14 +14,22 @@ const SignUpScreen = () => {
     const [user, setUser] = useState('');
     const [isPassFocused, setIsPassFocused] = useState(false);
     const [pass, setPass] = useState('');
+    const [load, setLoad] = useState(false);
 
     const handleSignUp = async () => {
             if(!user || !pass){
                 Alert.alert('WARNING', 'Please fill up the fields to login');
             }
             else{
-                await createUserWithEmailAndPassword(auth, user, pass)
+                try{
+                    setLoad(true);
+                    await createUserWithEmailAndPassword(auth, user, pass);
                     nav.navigate('LoginScreen');
+                } catch(error){
+                    Alert.alert('ERROR', 'Error signing up');
+                } finally{
+                    setLoad(false);
+                }
 
             }
 
@@ -90,6 +98,13 @@ const SignUpScreen = () => {
                         placeholderColor = "#888"/>
                 </View>
 
+                {load &&(
+                    <View style={styles.loadingPop}>
+                        <Text style = {{ color: '#fff', marginLeft: 10, fontSize: 24, fontFamily: 'Roboto' }}>Loading...</Text>
+                        <ActivityIndicator size="large" color="#fff"/>
+                    </View>
+                )}
+
                     <View style={styles.recFour}/>
                     <View style={styles.recFive}/>
             </LinearGradient>
@@ -116,6 +131,8 @@ const styles = StyleSheet.create({
     recFive: {width: 350, height: 50, left: 40, top: 65, position: 'absolute', backgroundColor: '#46525E'},
     fieldOne: {width: 250, height: 40, left: 90, top: 320, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
     fieldTwo: {width: 250, height: 40, left: 90, top: 380, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
+    loadingPop: {flexDirection:'row', width: 300, height: 100, left: 65, top: 400, justifyContent: 'center', alignItems: 'center', backgroundColor: '#444444', borderRadius: 20},
+    loadingtext: {width: 151, height: 40, left: 0, top: 0, position: 'absolute', textAlign: 'center', color: '#FFFDFD', fontSize: 25, fontFamily: 'Roboto', fontWeight: '700'},
 
 
 })
