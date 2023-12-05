@@ -24,7 +24,7 @@ const SendRes = () => {
       nav.navigate('UploadFileTab');
     }
     const goNext = () => {
-      if(!name || !mrn || !date){
+      if(!name || !mrn || !date || !add || !cond){
           Alert.alert('WARNING', 'Please fill up the missing fields');
       }
       else{
