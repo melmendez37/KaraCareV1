@@ -55,7 +55,7 @@ const SignUpScreen = () => {
 
     return(
         <View style={styles.container}>
-            <LinearGradient colors = {['#00598B', '#AD6868']} style = {styles.something}>
+            <LinearGradient colors = {['#00598B', '#8FBC8F']} style = {styles.something}>
                 <View style={styles.recOne}/>
                 <Text style={styles.title}>KaraCare EMERGENCY SYSTEM</Text>
                 <Image style={styles.image} source = {localImage}/>
@@ -70,7 +70,7 @@ const SignUpScreen = () => {
                     <TextInput  style={styles.user}
                             value={user}
                             onChangeText={(text) => setUser(text)}
-                            placeholder = {(isUserFocused || user) ? '': 'Username'}
+                            placeholder = {(isUserFocused || user) ? '': 'Email Address'}
                             placeholderColor = "#888"
                             textAlign= "center"
                             onFocus = {() => handleFocus('user')}

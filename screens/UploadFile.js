@@ -1,10 +1,10 @@
+import { ref, uploadBytes } from '@firebase/storage';
 import { useNavigation } from '@react-navigation/native';
 import * as DocumentPicker from 'expo-document-picker';
 import { LinearGradient } from 'expo-linear-gradient';
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { storage } from '../firebaseConfig';  
-import { ref, uploadBytes, getDownloadURL} from '@firebase/storage';
+import { storage } from '../firebaseConfig';
 
 const UploadFileTab = () => {
   const nav = useNavigation();
@@ -22,7 +22,7 @@ const UploadFileTab = () => {
 
   return (
     <View style={styles.container}>
-      <LinearGradient colors={[ '#00598B' , '#AD6868' ]} style={styles.something}>
+      <LinearGradient colors={[ '#00598B' , '#8FBC8F' ]} style={styles.something}>
           <View style={styles.recOne} />
           <Text style={styles.title}>KaraCare EMERGENCY SYSTEM</Text>
           <Image style={styles.image} source= {require("../assets/karacare.png")} />

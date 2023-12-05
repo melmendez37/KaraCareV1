@@ -15,7 +15,7 @@ const SentResNotif = () => {
     };
     return(
         <View style = {styles.container}>
-            <LinearGradient colors = {['#00598B', '#AD6868']} style = {styles.something}>
+            <LinearGradient colors = {['#00598B', '#8FBC8F']} style = {styles.something}>
                     <View style={styles.mainRec} />
                     <Text style={styles.title}>KaraCare EMERGENCY SYSTEM</Text>
                     <Image style={styles.image} source={localImage}/>

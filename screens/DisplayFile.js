@@ -16,7 +16,7 @@ const DisplayFile = () => {
 
     return(
         <View style={styles.container}>
-            <LinearGradient colors={[ '#00598B' , '#AD6868' ]} style={styles.something}>
+            <LinearGradient colors={[ '#00598B' , '#8FBC8F' ]} style={styles.something}>
                 <View style={styles.recOne}/>
                 <Image style={styles.image} source={require("../assets/karacare.png")} />
                 <Text style={styles.title}>KaraCare EMERGENCY SYSTEM</Text>
