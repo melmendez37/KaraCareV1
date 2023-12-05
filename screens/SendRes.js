@@ -2,9 +2,26 @@ import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState } from 'react';
 import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { db } from "../firebaseConfig";
+import { addDoc, collection} from "firebase/firestore"
 
 const SendRes = () => {
   const nav = useNavigation();
+
+  const reportCollection = collection(db, "MedResults");
+
+  const submitReport = async() =>{
+      try {
+          await addDoc(reportCollection, {
+              Name: name,
+              MRN: mrn,
+              DischargeDate: date,
+          });
+      } catch (error) {
+          console.log(error)
+      } 
+  };
+
     const [isNameFocused, setIsNameFocused] = useState(false);
     const [name, setName] = useState('');
     const [isMrnFocused, setIsMrnFocused] = useState(false);
@@ -36,6 +53,7 @@ const SendRes = () => {
                   {
                       text: 'Confirm',
                       onPress: () => {
+                        submitReport()
                           nav.navigate('SentResNotif');
                       },
                   },

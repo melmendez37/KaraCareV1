@@ -3,9 +3,26 @@ import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useState } from 'react';
 import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { db } from "../firebaseConfig";
+import { addDoc, collection} from "firebase/firestore"
 
 const Inpatient = () => {
     const nav = useNavigation();
+
+    const reportCollection = collection(db, "InpatientRecords");
+
+    const sumbitReport = async() =>{
+        try {
+            await addDoc(reportCollection, {
+                Name: name,
+                RoomNumber: room,
+                PhoneNumber: num,
+                MDAssigned: doc 
+            });
+        } catch (error) {
+            console.log(error)
+        } 
+    };
 
     const goNext = () => {
         if(!name || !num || !room || !doc){
@@ -26,6 +43,7 @@ const Inpatient = () => {
                     {
                         text: 'Confirm',
                         onPress: () => {
+                            sumbitReport()
                             nav.navigate('NotifHosp');
                         },
                     },
