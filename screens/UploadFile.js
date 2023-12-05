@@ -1,6 +1,7 @@
-import { ref, uploadBytes } from '@firebase/storage';
+import { ref, uploadBytesResumable } from '@firebase/storage';
 import { useNavigation } from '@react-navigation/native';
 import * as DocumentPicker from 'expo-document-picker';
+import * as FileSystem from 'expo-file-system';
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -8,6 +9,7 @@ import { storage } from '../firebaseConfig';
 
 const UploadFileTab = () => {
   const nav = useNavigation();
+
   const ViewFile = () => {
     nav.navigate('DisplayFile')
   }
@@ -15,9 +17,20 @@ const UploadFileTab = () => {
       const pickDocument = async () => {
 
         let result = await DocumentPicker.getDocumentAsync({})
-        const file = result.assets[0]
-        const storageRef = ref(storage, `Medical Results(Hypothethical)/${file.name}`); //LINE A
-        await uploadBytes(storageRef, file);
+        if (result != null) {
+
+          const r = await fetch(result.assets[0].uri);
+          const b = await r.blob();
+
+          if (b != null) {
+            UploadFile(b, result.assets[0].name)
+          }
+        }
+      }
+        const UploadFile = async (blobFile, fileName) => {
+          if (!blobFile) return;
+            const storageRef = ref(storage, `Medical Results(Hypothethical)/${fileName}`);
+            await uploadBytesResumable(storageRef, blobFile);
   }
 
   return (
