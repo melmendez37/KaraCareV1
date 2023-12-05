@@ -39,7 +39,7 @@ const Home = () => {
 
     return(
         <View style={styles.container}>
-            <LinearGradient colors = {['#00598B', '#AD6868']} style = {styles.something}>
+            <LinearGradient colors = {['#00598B', '#8FBC8F']} style = {styles.something}>
             
                 <View style={styles.mainRec}></View>
                 <View style={styles.rec2}></View>
