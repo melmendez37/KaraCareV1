@@ -2,6 +2,8 @@ import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebaseConfig";
 
 const localImage = require('../assets/karacare.png');
 
@@ -28,8 +30,12 @@ const Home = () => {
                 {type:'Cancel', style: 'cancel'},
                 {
                     text: 'Logout',
-                    onPress: () => {
-                        nav.navigate('LoginScreen');
+                    onPress: async () => {
+                        await signOut(auth)
+                        if(auth.currentUser == null){
+                            nav.navigate('LoginScreen');
+                        }
+                        
                     },
                 },
             ],
