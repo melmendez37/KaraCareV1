@@ -1,8 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
+import { signOut } from "firebase/auth";
 import React from "react";
 import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { signOut } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 
 const localImage = require('../assets/karacare.png');

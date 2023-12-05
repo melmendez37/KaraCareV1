@@ -1,9 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from 'react';
 import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { db } from "../firebaseConfig";
-import { addDoc, collection} from "firebase/firestore"
 
 const Outpatient = () => {
 

@@ -16,8 +16,6 @@ const SendRes = () => {
               Name: name,
               MRN: mrn,
               DischargeDate: date,
-              Address: add,
-              Condition: cond
           });
       } catch (error) {
           console.log(error)
@@ -56,7 +54,7 @@ const SendRes = () => {
                       text: 'Confirm',
                       onPress: () => {
                         submitReport()
-                          nav.navigate('UploadFileTab');
+                          nav.navigate('SentResNotif');
                       },
                   },
               ],
@@ -74,7 +72,7 @@ const SendRes = () => {
             setIsMrnFocused(true);
             break;
         case 'date':
-            setIsDateFocused(true);
+          setIsDateFocused(true);
         case 'add':
             setIsAddFocused(true);
         case 'cond':
@@ -161,7 +159,7 @@ const SendRes = () => {
                             textAlign= "center"
                             onFocus = {() => handleFocus('date')}
                             onBlur = {() => handleBlur('date')}
-                            onChangeText={(text) => handleDateChange(text)}
+                            onChangeText={handleDateChange}
                             placeholder = {(isDateFocused || date) ? '': 'Date of Discharge'}
                             placeholderColor = "#888"/>
 
