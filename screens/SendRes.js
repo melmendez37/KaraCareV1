@@ -1,9 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from 'react';
 import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { db } from "../firebaseConfig";
-import { addDoc, collection} from "firebase/firestore"
 
 const SendRes = () => {
   const nav = useNavigation();
@@ -16,6 +16,8 @@ const SendRes = () => {
               Name: name,
               MRN: mrn,
               DischargeDate: date,
+              Address: add,
+              Condition: cond
           });
       } catch (error) {
           console.log(error)
@@ -54,7 +56,7 @@ const SendRes = () => {
                       text: 'Confirm',
                       onPress: () => {
                         submitReport()
-                          nav.navigate('SentResNotif');
+                          nav.navigate('UploadFileTab');
                       },
                   },
               ],
@@ -72,7 +74,7 @@ const SendRes = () => {
             setIsMrnFocused(true);
             break;
         case 'date':
-          setIsDateFocused(true);
+            setIsDateFocused(true);
         case 'add':
             setIsAddFocused(true);
         case 'cond':
@@ -159,7 +161,7 @@ const SendRes = () => {
                             textAlign= "center"
                             onFocus = {() => handleFocus('date')}
                             onBlur = {() => handleBlur('date')}
-                            onChangeText={handleDateChange}
+                            onChangeText={(text) => handleDateChange(text)}
                             placeholder = {(isDateFocused || date) ? '': 'Date of Discharge'}
                             placeholderColor = "#888"/>
 

@@ -1,10 +1,14 @@
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import Pdf from "react-native-pdf";
+
 
 const DisplayFile = () => {
     const nav = useNavigation();
+    const route = useRoute();
+    
 
     const confirm = () => {
         nav.navigate('SentResNotif');
@@ -25,6 +29,12 @@ const DisplayFile = () => {
                 <View style={styles.recThree}></View>
                 <View style={styles.recFour}></View>
                 <View style={styles.recFive}></View>
+
+                {pdfUri && (
+                    <View style={styles.pdfContainer}>
+                        <Pdf source={{ uri: pdfUri, cache: true }} onLoadComplete={(numberOfPages, filePath) => {}} onPageChanged={(page, numberOfPages) => {}} onError={(error) => {}} />
+                    </View>
+                )}
                 <TouchableOpacity style={styles.buttonOne} onPress={confirm}/>
                 <TouchableOpacity style={styles.buttonTwo} onPress={cancel}/>
                 <Text style={styles.buttonTwoText}>Cancel</Text>

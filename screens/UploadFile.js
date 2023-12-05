@@ -2,15 +2,18 @@ import { ref, uploadBytes } from '@firebase/storage';
 import { useNavigation } from '@react-navigation/native';
 import * as DocumentPicker from 'expo-document-picker';
 import { LinearGradient } from 'expo-linear-gradient';
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import Pdf from 'react-native-pdf';
 import { storage } from '../firebaseConfig';
 
 const UploadFileTab = () => {
   const nav = useNavigation();
   const ViewFile = () => {
-    nav.navigate('DisplayFile')
+    nav.navigate('DisplayFile', pdfUri)
   }
+
+  const [pdfUri, setpdfUri] = useState(null);
 
       const pickDocument = async () => {
 
@@ -18,6 +21,7 @@ const UploadFileTab = () => {
         const file = result.assets[0]
         const storageRef = ref(storage, `Medical Results(Hypothethical)/${file.name}`); //LINE A
         await uploadBytes(storageRef, file);
+        setpdfUri(file.uri);
   }
 
   return (
@@ -33,6 +37,11 @@ const UploadFileTab = () => {
           <View style={styles.buttonPDF}>
           <Button title='Upload here (.pdf only)' onPress = {pickDocument}/>
           </View>
+          {pdfUri && (
+          <View style={styles.pdfContainer}>
+            <Pdf source={{ uri: pdfUri, cache: true }} onLoadComplete={(numberOfPages, filePath) => {}} onPageChanged={(page, numberOfPages) => {}} onError={(error) => {}} />
+          </View>
+        )}
           <Text style={styles.cancelButtonText}>Next</Text>
           <View style={styles.recFour}></View>
           <View style={styles.recFive}></View>
@@ -56,6 +65,7 @@ const styles = StyleSheet.create({
     recFour:{width: 350, height: 41, left: 39, top: 35, position: 'absolute', backgroundColor: '#46525E'},
     recFive:{width: 350, height: 77, left: 39, top: 623, position: 'absolute', backgroundColor: '#8C8C8C'},
     buttonPDF: {width: 300, height: 50, left: 65, top: 300},
+    pdfContainer: { flex: 1, width: '100%', height: '100%', position: 'absolute' },
 })
 
 export default UploadFileTab;

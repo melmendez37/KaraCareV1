@@ -1,10 +1,10 @@
 
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from 'react';
 import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { db } from "../firebaseConfig";
-import { addDoc, collection} from "firebase/firestore"
 
 const Inpatient = () => {
     const nav = useNavigation();
@@ -17,7 +17,7 @@ const Inpatient = () => {
                 Name: name,
                 RoomNumber: room,
                 PhoneNumber: num,
-                MDAssigned: doc 
+                MDAssigned: doc
             });
         } catch (error) {
             console.log(error)
@@ -72,11 +72,13 @@ const Inpatient = () => {
                 break;
             case 'doc':
                 setIsDocFocused(true);
+                break;
             case 'num':
                 setIsNumFocused(true);
                 break;
             case 'room':
                 setIsRoomFocused(true);
+                break;
             default:
                 break;
         }
@@ -92,15 +94,17 @@ const Inpatient = () => {
                 break;
             case 'room':
                 setIsRoomFocused(false);
+                break;
             case 'doc':
                 setIsDocFocused(false);
+                break;
             default:
                 break;
         }
     }
 
-  return (
-<View styles={styles.container}>
+return (
+<View style={styles.container}>
     <LinearGradient colors={[ '#00598B', '#8FBC8F']} style={styles.something}>
         <View style={styles.recOnere} />
         <Text style={styles.title}>KaraCare EMERGENCY SYSTEM</Text>
