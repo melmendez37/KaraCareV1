@@ -2,9 +2,11 @@ import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
 import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { db } from "../firebaseConfig";
+import { addDoc, collection} from "firebase/firestore"
 
 const localImage = require('../assets/karacare.png')
-
+const reportCollection = collection(db, "EmergencyAlerts");
 
 const ExternalRepsonderForm = () => {
     const nav = useNavigation();
@@ -12,6 +14,20 @@ const ExternalRepsonderForm = () => {
     const backWelcome = () => {
         nav.navigate('WelcomePage');
     }
+
+    const sumbitReport = async() =>{
+        try {
+            await addDoc(reportCollection, {
+                Name: name,
+                Adress: address,
+                PhoneNumber: number,
+                Cause: cause 
+            });
+        } catch (error) {
+            console.log(error)
+        }
+        
+    };
 
     const handleExternalResponder = () => {
         if(!name || !address || !number || !cause){
@@ -32,6 +48,7 @@ const ExternalRepsonderForm = () => {
                     {
                         text: 'Confirm',
                         onPress: () => {
+                            sumbitReport()
                             nav.navigate('ExtResNotification');
                         },
                     },
