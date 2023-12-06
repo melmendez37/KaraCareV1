@@ -63,17 +63,30 @@ const Home = () => {
                 <View style={styles.recFour}></View>
                 <Text style={styles.title}>KaraCare EMERGENCY SYSTEM</Text>
                 <Image style={styles.image} source={localImage} />
-                <TouchableOpacity style={styles.logoutButton} onPress={goLogout} />
-                <TouchableOpacity style={styles.button1} onPress={gotoForm} />
-                <TouchableOpacity style={styles.button2} onPress={gotoNotifyHospital}/>
-                <TouchableOpacity style={styles.button3} onPress={gotoSendResults}/>
+
+                <TouchableOpacity style={styles.logoutButton} onPress={goLogout}>
+                <Text style={styles.logOut}>Log Out</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.button1} onPress={gotoForm}>
+                <Text style={styles.button1text}>EMERGENCY ALERT</Text>
+                </TouchableOpacity>
+                
+                <TouchableOpacity style={styles.button2} onPress={gotoNotifyHospital}>
+                <Text style={styles.button2text}>NOTIFY HOSPITAL</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.button3} onPress={gotoSendResults}>
+                <Text style={styles.button3text}>SEND MEDICAL RESULTS</Text>
+                </TouchableOpacity>
+
                 <Text style={styles.header}>HOME</Text>
                 <View style={styles.rec}></View>
                 
-                <Text style={styles.button1text}>EMERGENCY ALERT</Text>
-                <Text style={styles.button2text}>NOTIFY HOSPITAL</Text>
-                <Text style={styles.button3text}>SEND MEDICAL RESULTS</Text>
-                <Text style={styles.logOut}>Log Out</Text>
+                
+                
+                
+                
                 
                 {load &&(
                     <View style={styles.loadBox}>
@@ -90,20 +103,20 @@ const styles = StyleSheet.create({
     container: {width: 424, left: 0, top: 0, flex: 1, alignItems: 'center',justifyContent: 'center', backgroundColor: 'black'},
     something: {width: '100%', height: '100%', position: 'relative', borderRadius: 50, overflow: 'hidden'},
     mainRec: {width: 350, height: 800, left: 40, top: 65, position: 'absolute', backgroundColor: '#BCBCBC'},
-    header: {width: 151, height: 26, left: 130, top: 225, position: 'absolute', textAlign: 'center', color: 'white', fontSize: 24, fontFamily: 'Roboto', fontWeight: '700'},
-    logOut: {width: 46, height: 19, left: 302, top: 233, position: 'absolute', textAlign: 'center', color: 'white', fontSize: 10, fontFamily: 'Roboto', fontWeight: '700'},
-    button1: {width: 150, height: 100, left: 135, top: 320, position: 'absolute', backgroundColor: '#46525E', borderRadius: 20},
-    button2: {width: 150, height: 100, left: 135, top: 435, position: 'absolute', backgroundColor: '#8C8C8C', borderRadius: 20},
-    button3: {width: 150, height: 100, left: 135, top: 550, position: 'absolute', backgroundColor: '#46525E', borderRadius: 20},
-    button1text: {width: 170, height: 40, left: 125, top: 360, position: 'absolute', textAlign: 'center', color: '#FFFDFD', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
-    button2text: {width: 170, height: 40, left: 125, top: 475, position: 'absolute', textAlign: 'center', color: '#FFFBFB', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
-    button3text: {width: 170, height: 40, left: 125, top: 580, position: 'absolute', textAlign: 'center', color: '#FFFBFB', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
+    header: {width: 151, height: 26, left: 140, top: 225, position: 'absolute', textAlign: 'center', color: 'white', fontSize: 24, fontFamily: 'Roboto', fontWeight: '700'},
+    logOut: {width: 70, height: 30, top: 8, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 10, fontFamily: 'Roboto', fontWeight: '700'},
+    button1: {width: 150, height: 100, left: 140, top: 290, position: 'absolute', backgroundColor: '#46525E', borderRadius: 20},
+    button2: {width: 150, height: 100, left: 140, top: 405, position: 'absolute', backgroundColor: '#8C8C8C', borderRadius: 20},
+    button3: {width: 150, height: 100, left: 140, top: 520, position: 'absolute', backgroundColor: '#46525E', borderRadius: 20},
+    button1text: {width: 150, height: 100, top:40, position: 'absolute', textAlign: 'center', color: '#FFFDFD', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
+    button2text: {width: 150, height: 100, top:40, position: 'absolute', textAlign: 'center', color: '#FFFBFB', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
+    button3text: {width: 150, height: 100, top:30, position: 'absolute', textAlign: 'center', color: '#FFFBFB', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
     rec: {width: 350, height: 162, left: 40, top: 704, position: 'absolute', backgroundColor: '#46525E'},
     rec2: {width: 350, height: 60, left: 40, top: 210, position: 'absolute', backgroundColor: '#46525E'},
     recFour: {width: 350, height: 50, left: 40, top: 65, position: 'absolute', backgroundColor: '#46525E'},
     title: {width: 248, height: 49, left: 120, top: 145, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 16, fontFamily: 'Roboto', fontWeight: '700'  },
     image: {width: 68, height: 66, left: 70, top: 130, position: 'absolute'},
-    logoutButton: {width: 70, height: 21, left: 290, top: 230, position: 'absolute', backgroundColor: '#8C8C8C', borderRadius: 20},
+    logoutButton: {width: 70, height: 30, left: 180, top: 640, position: 'absolute', backgroundColor: 'white', borderRadius: 20},
     loadBox: {flexDirection: 'row', width: 300, height: 100, left: 65, top: 400, justifyContent: 'center', alignItems: 'center', backgroundColor: '#444444', borderRadius: 20},
     
 })

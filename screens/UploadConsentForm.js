@@ -1,7 +1,6 @@
 import { ref, uploadBytesResumable } from '@firebase/storage';
 import { useNavigation } from '@react-navigation/native';
 import * as DocumentPicker from 'expo-document-picker';
-import * as FileSystem from 'expo-file-system';
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import { Alert, Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';

@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import React, { useState } from "react";
-import { ActivityIndicator, Alert, BackHandler, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { auth } from '../firebaseConfig';
 
 
@@ -16,22 +16,9 @@ const LoginScreen = () => {
     const [pass, setPass] = useState('');
     const [load, setLoad] = useState(false);
 
-    const handleExitApp = () => {
-        Alert.alert('CONFIRM EXIT', 'Do you wanna exit the app?', [
-          {
-            text: 'Cancel',
-            style: 'cancel',
-          },
-          {
-            text: 'Exit',
-            onPress: () => BackHandler.exitApp(),
-          },
-        ]);
-      };
-
     const handleLogin = async () => {
         if(!user || !pass){
-            Alert.alert('WARNING', 'Please fill up the missing fields');
+            Alert.alert('WARNING', 'Please enter your credentials');
         }
         else{ 
             try {
@@ -92,11 +79,14 @@ const LoginScreen = () => {
                 <Text style={styles.headerText}>LOGIN</Text>
                 
                 
-                <TouchableOpacity style = {styles.buttonOne} onPress={handleLogin}/>
-                <Text style={styles.loginText}>Log In</Text>
+                <TouchableOpacity style = {styles.buttonOne} onPress={handleLogin}>
+                    <Text style={styles.loginText}>Log In</Text>
+                </TouchableOpacity>
                 
-                <TouchableOpacity style = {styles.buttonTwo} onPress={handleSignUp}/>
-                <Text style={styles.signupText}>Sign Up</Text>
+                
+                <TouchableOpacity style = {styles.buttonTwo} onPress={handleSignUp}>
+                    <Text style={styles.signupText}>Sign Up</Text>
+                </TouchableOpacity>
 
                 <View style={styles.fieldOne}>
                     <TextInput  style={styles.user}
@@ -147,8 +137,8 @@ const styles = StyleSheet.create({
 
     buttonOne: {width: 70, height: 40, left: 133, top: 455, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
     buttonTwo: {width: 70, height: 40, left: 229, top: 455, position: 'absolute', backgroundColor: '#46525E', borderRadius: 50},
-    loginText: {width: 50, height: 20, left: 142, top: 465, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 13, fontFamily: 'Roboto', fontWeight: '700'},
-    signupText: {width: 50, height: 20, left: 237, top: 465, position: 'absolute', textAlign: 'center', color: '#D9D9D9', fontSize: 13, fontFamily: 'Roboto', fontWeight: '700'},
+    loginText: {width: 66, height: 20, top: 10, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 13, fontFamily: 'Roboto', fontWeight: '700'},
+    signupText: {width: 66, height: 20, top: 10, position: 'absolute', textAlign: 'center', color: '#D9D9D9', fontSize: 13, fontFamily: 'Roboto', fontWeight: '700'},
 
     headerText: {width: 151, height: 40, left: 140, top: 238, position: 'absolute', textAlign: 'center', color: '#FFFDFD', fontSize: 25, fontFamily: 'Roboto', fontWeight: '700'},
     header: {width: 350, height: 70, left: 40, top: 222, position: 'absolute', backgroundColor: '#46525E'},

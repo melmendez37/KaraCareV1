@@ -120,11 +120,14 @@ const ExternalRepsonderForm = () => {
                 <View style={styles.recThree}></View>
                 <View style={styles.recFour}></View>
 
-                <TouchableOpacity style = {styles.buttonOne} onPress={handleExternalResponder}/>
-                <Text style={[styles.confirm, {pointerEvents:('none')}]}>Next</Text>
+                <TouchableOpacity style = {styles.buttonOne} onPress={handleExternalResponder}>
+                <Text style={styles.confirm}>Next</Text>
+                </TouchableOpacity>
                 
-                <TouchableOpacity style = {styles.buttonTwo} onPress={backWelcome}/>
+                <TouchableOpacity style = {styles.buttonTwo} onPress={backWelcome}>
                 <Text style={styles.delete}>Back</Text>
+                </TouchableOpacity>
+                
                 <View style={styles.recFive}>
 
                 <View style={styles.fieldOne} />
@@ -189,10 +192,10 @@ const styles = StyleSheet.create({
     buttonOne: {width: 70, height: 40, left: 133, top: 560, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
     buttonTwo: {width: 70, height: 40, left: 229, top: 560, position: 'absolute', backgroundColor: '#46525E', borderRadius: 50},
     header: {width: 240, height: 60, left: 96, top: 260, position: 'absolute', textAlign: 'center', color: '#FFFDFD', fontSize: 24, fontFamily: 'Roboto', fontWeight: '700'},
-    recThree: {width: 350, height: 141, left: 40, top: 724, position: 'absolute', backgroundColor: '#8C8C8C'},
-    recFour: {width: 350, height: 64, left: 40, top: 65, position: 'absolute', backgroundColor: '#8C8C8C'},
-    confirm: {width: 40, height: 20, left: 147, top: 567, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
-    delete: {width: 40, height: 20, left: 242, top: 567, position: 'absolute', textAlign: 'center', color: '#D9D9D9', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
+    recThree: {width: 350, height: 141, left: 40, top: 724, position: 'absolute', backgroundColor: '#46525E'},
+    recFour: {width: 350, height: 64, left: 40, top: 65, position: 'absolute', backgroundColor: '#46525E'},
+    confirm: {width: 70, height: 40, top: 10, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
+    delete: {width: 70, height: 40, top: 10, position: 'absolute', textAlign: 'center', color: '#D9D9D9', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
     recFive: {width: 170, height: 26, left: 125, top: 340, position: 'absolute'},
     fieldOne: {width: 250, height: 40, left: -35, top: 0, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
     ambot: {width: 170, height: 26, left: 95, top: 350, position: 'absolute'},

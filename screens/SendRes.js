@@ -16,6 +16,8 @@ const SendRes = () => {
                 Name: name,
                 MRN: mrn,
                 DischargeDate: date,
+                Address: add,
+                Condition: cond
             });
         } catch (error) {
             console.log(error)
@@ -37,12 +39,12 @@ const SendRes = () => {
         nav.navigate('Home');
     }
 
-    const next = () => {
-        nav.navigate('UploadFileTab');
-    }
     const goNext = () => {
         if(!name || !mrn || !date || !add || !cond){
             Alert.alert('WARNING', 'Please fill up the missing fields');
+        }
+        else if(mrn.toString().length != 10){
+            Alert.alert('WARNING', 'Medical Record Number should be 10 digits');
         }
         else{
             Alert.alert(
@@ -119,7 +121,7 @@ const SendRes = () => {
         formattedDate = formattedDate.slice(0, 10)
     }
     setDate(formattedDate);
-    }
+    };
 
     return (
         <View style={styles.container}>
@@ -129,10 +131,15 @@ const SendRes = () => {
         <Image style={styles.image} source={require('../assets/karacare.png')}  />
         <View style={styles.nextButton} />
         <View style={styles.cancelButton} />
-        <TouchableOpacity style={styles.nextButton} onPress={goNext}/>
-        <TouchableOpacity style={styles.cancelButton} onPress={cancel}/>
+
+        <TouchableOpacity style={styles.nextButton} onPress={goNext}>
         <Text style={styles.nextButtonText}>Next</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.cancelButton} onPress={cancel}>
         <Text style={styles.cancelButtonText}>Cancel</Text>
+        </TouchableOpacity>
+
         <View style={styles.recTwo}></View>
         <Text style={styles.header}>SEND MEDICAL RESULTS</Text>
         <View style={styles.recThree}></View>
@@ -199,23 +206,23 @@ const SendRes = () => {
 const styles = StyleSheet.create({
     container: {width: 424, left: 0, top: 0, flex: 1, alignItems: 'center',justifyContent: 'center', backgroundColor: 'black'},
     something:{width: '100%', height: '100%', position: 'relative' , borderRadius: 50, overflow: 'hidden'},
-    recOne:{width: 350, height: 800, left: 40, top: 40, position: 'absolute', backgroundColor: '#BCBCBC'},
-    title:{width: 200, height: 49, left: 150, top: 116, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 18, fontFamily: 'Roboto', fontWeight: '700',},
-    image:{width: 68, height: 66, left: 67, top: 112, position: 'absolute'},
-    nextButton:{width: 80, height: 40, left: 133, top: 580, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 100},
-    cancelButton:{width: 80, height: 40, left: 222, top: 580, position: 'absolute', backgroundColor: '#46525E', borderRadius: 100},
-    nextButtonText:{width: 40, height: 20, left: 152, top: 590, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
-    cancelButtonText:{width: 50, height: 20, left: 235, top: 590, position: 'absolute', textAlign: 'center', color: '#D9D9D9', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
-    recTwo:{width: 350, height: 80, left: 40, top: 190, position: 'absolute', backgroundColor: '#46525E'},
-    header:{width: 300, height: 28, left: 62, top: 212, position: 'absolute', textAlign: 'center', color: '#FFFBFB', fontSize: 24, fontFamily: 'Roboto', fontWeight: '700', },
-    recThree:{width: 350, height: 60, left: 40, top: 39, position: 'absolute', backgroundColor: '#46525E'},
-    recFour:{width: 350, height: 80, left: 40, top: 645, position: 'absolute', backgroundColor: '#8C8C8C'},
-    recFive:{width: 350, height: 115, left: 40, top: 725, position: 'absolute', backgroundColor: '#46525E'},
-    textBox1:{width: 250, height: 40, left: 95, top: 305, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
+    recOne:{width: 350, height: 800, left: 40, top: 65, position: 'absolute', backgroundColor: '#BCBCBC'},
+    title:{width: 200, height: 49, left: 150, top: 140, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 18, fontFamily: 'Roboto', fontWeight: '700',},
+    image:{width: 68, height: 66, left: 67, top: 137, position: 'absolute'},
+    nextButton:{width: 80, height: 40, left: 133, top: 605, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 100},
+    cancelButton:{width: 80, height: 40, left: 222, top: 605, position: 'absolute', backgroundColor: '#46525E', borderRadius: 100},
+    nextButtonText:{width: 80, height: 40, top:10, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
+    cancelButtonText:{width: 80, height: 40, top:10, position: 'absolute', textAlign: 'center', color: '#D9D9D9', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
+    recTwo:{width: 350, height: 80, left: 40, top: 215, position: 'absolute', backgroundColor: '#46525E'},
+    header:{width: 300, height: 28, left: 62, top: 237, position: 'absolute', textAlign: 'center', color: '#FFFBFB', fontSize: 24, fontFamily: 'Roboto', fontWeight: '700', },
+    recThree:{width: 350, height: 60, left: 40, top: 64, position: 'absolute', backgroundColor: '#46525E'},
+    recFour:{width: 350, height: 80, left: 40, top: 670, position: 'absolute', backgroundColor: '#8C8C8C'},
+    recFive:{width: 350, height: 115, left: 40, top: 750, position: 'absolute', backgroundColor: '#46525E'},
+    textBox1:{width: 250, height: 40, left: 95, top: 320, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
     textField1:{width: 200, height: 40, left: 20, top: 0, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400',},
-    textBox2:{width: 250, height: 40, left: 95, top: 360, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
+    textBox2:{width: 250, height: 40, left: 95, top: 375, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
     textField2:{width: 200, height: 40, left: 20, top: 0, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400',},
-    textBox3:{width: 250, height: 40, left: 95, top: 415, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
+    textBox3:{width: 250, height: 40, left: 95, top: 430, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
     textField3:{width: 200, height: 40, left: 20, top: 0, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400',},
     textBox4:{width: 250, height: 40, left: 0, top: 55, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
     textField4:{width: 200, height: 40, left: 20, top: 0, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400',},

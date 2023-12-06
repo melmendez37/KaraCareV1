@@ -42,7 +42,7 @@ const WelcomePage = () => {
                 <Image style={styles.image} source = {localImage} />
                     
                 <TouchableOpacity style = {styles.button1} onPress={handleExternalResponder}>
-                <Text style = {styles.buttonText}>EXTERNAL RESPONDER</Text>
+                    <Text style = {styles.buttonText}>EXTERNAL RESPONDER</Text>
                 </TouchableOpacity>
                     
                 <TouchableOpacity style = {styles.button2} onPress={handleMedStaff}>
@@ -73,11 +73,11 @@ const styles = StyleSheet.create({
     image: {width: 120, height: 122, left: 155, top: 162, position: 'absolute'},
     button1: {width: 150, height: 80, left: 140, top: 447, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 60, justifyContent: 'center', alignItems: 'center'},
     button2: {width: 150, height: 80, left: 140, top: 545, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 60, justifyContent: 'center', alignItems: 'center'},
-    buttonText:{width: 100, height: 55, left: 165, top: 467, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
-    buttonText2: {width: 100, height: 55, left: 165, top: 565, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
+    buttonText:{width: 100, height: 55, top: 20, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
+    buttonText2: {width: 100, height: 55, top: 20, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
     welcomeContainer: {width: 151, height: 100, left: 135, top: 377, position: 'absolute', alignItems: 'center', display: 'inline-flex'},
     welcomeText: {left: 0, width: 151, height: 50, textAlign: 'center', color: '#FFFDFD', fontSize: 24, fontFamily: 'Roboto', fontWeight: 'bold'},
-    exitText: {width: 46, height: 19, left: 192, top: 653, position: 'absolute', textAlign: 'center', color: 'white', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
+    exitText: {width: 46, height: 19, top: 4, left: 18, position: 'absolute', textAlign: 'center', color: 'white', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
     exitButton: {width: 80, height: 28, left: 175, top: 650, position: 'absolute', backgroundColor: '#8C8C8C', borderRadius: 20},
 });
 

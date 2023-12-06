@@ -21,8 +21,11 @@ const MedStaffNotif = () => {
                     <Image style={styles.image} source={localImage}/>
                     <View style={styles.notifText} />
                     <View style={styles.recThree}/>
-                    <TouchableOpacity style = {styles.button} onPress={backWelcome}/>
+                    
+                    <TouchableOpacity style = {styles.button} onPress={backWelcome}>
                     <Text style={styles.buttonText}>HOME</Text>
+                    </TouchableOpacity>
+                    
                     <View style={styles.header}/>
 
                     <Text style={styles.text}>EMERGENCY ALERT</Text>
@@ -40,11 +43,11 @@ const styles = StyleSheet.create({
     something: {width: '100%', height: '100%', position: 'relative', borderRadius: 50, overflow: 'hidden'},
     image: {width: 68, height: 66, left: 76, top: 153, position: 'absolute'},
     title: {width: 248, height: 49, left: 125, top: 162, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 18, fontFamily: 'Roboto', fontWeight: '700'},
-    recOne: {width: 350, height: 56, left: 40, top: 65, position: 'absolute', backgroundColor: '#8C8C8C'},
+    recOne: {width: 350, height: 56, left: 40, top: 65, position: 'absolute', backgroundColor: '#46525E'},
     button: {width: 90, height: 40, left: 171, top: 550, position: 'absolute', backgroundColor: '#46525E', borderRadius: 100},
     notifText: {width: 250, height: 150, left: 90, top: 365, position: 'absolute', backgroundColor: '#62A252', borderRadius: 25},
-    recThree: {width: 350, height: 141, left: 40, top: 724, position: 'absolute', backgroundColor: '#8C8C8C'},
-    buttonText: {width: 50, height: 19, left: 190, top: 555, position: 'absolute', textAlign: 'center', color: '#D9D9D9', fontSize: 16, fontFamily: 'Roboto', fontWeight: '700'},
+    recThree: {width: 350, height: 141, left: 40, top: 724, position: 'absolute', backgroundColor: '#46525E'},
+    buttonText: {width: 90, height: 40, top: 10, position: 'absolute', textAlign: 'center', color: '#D9D9D9', fontSize: 16, fontFamily: 'Roboto', fontWeight: '700'},
     text: {width: 350, height: 77, left: 100, top: 260, position: 'absolute', color: 'white', fontSize: 24, fontFamily: 'Roboto', fontWeight: '700'},
     header: {width: 350, height: 77, left: 40, top: 240, position: 'absolute', backgroundColor: '#8C8C8C'},
     confirm: {width: 200, height: 120, left: 115, top: 385, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 20, fontFamily: 'Roboto', fontWeight: '700'},

@@ -35,6 +35,10 @@ const SignUpScreen = () => {
 
     }
 
+    const handleCancel = () => {
+        nav.navigate('LoginScreen')
+    }
+
     const handleFocus = (field) => {
         switch (field){
             case 'user':
@@ -71,8 +75,14 @@ const SignUpScreen = () => {
                 <View style={styles.header}></View>
                 <Text style={styles.headerText}>SIGNUP</Text>
                 
-                <TouchableOpacity style = {styles.buttonTwo} onPress={handleSignUp}/>
+                <TouchableOpacity style = {styles.buttonTwo} onPress={handleSignUp}>
                 <Text style={styles.signupText}>Sign Up</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style = {styles.buttonOne} onPress={handleCancel}>
+                <Text style={styles.cancelText}>Cancel</Text>
+                </TouchableOpacity>
+                
 
                 <View style={styles.fieldOne}>
                     <TextInput  style={styles.user}
@@ -119,8 +129,10 @@ const styles = StyleSheet.create({
     image: {width: 68, height: 66, left: 76, top: 140, position: 'absolute'},
     title: {width: 200, height: 49, left: 166, top: 150, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 18, fontFamily: 'Roboto', fontWeight: '700'},
 
-    buttonTwo: {width: 70, height: 40, left: 180, top: 450, position: 'absolute', backgroundColor: '#46525E', borderRadius: 50},
-    signupText: {width: 50, height: 20, left: 190, top: 459, position: 'absolute', textAlign: 'center', color: '#D9D9D9', fontSize: 13, fontFamily: 'Roboto', fontWeight: '700'},
+    buttonTwo: {width: 70, height: 40, left: 135, top: 450, position: 'absolute', backgroundColor: '#46525E', borderRadius: 50},
+    signupText: {width: 70, height: 60, top:10, position: 'absolute', textAlign: 'center', color: '#D9D9D9', fontSize: 13, fontFamily: 'Roboto', fontWeight: '700'},
+    buttonOne: {width: 70, height: 40, left: 225, top: 450, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
+    cancelText: {width: 70, height: 60, top:10, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
 
     headerText: {width: 151, height: 40, left: 140, top: 235, position: 'absolute', textAlign: 'center', color: '#FFFDFD', fontSize: 25, fontFamily: 'Roboto', fontWeight: '700'},
     header: {width: 350, height: 70, left: 40, top: 222, position: 'absolute', backgroundColor: '#46525E'},

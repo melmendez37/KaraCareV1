@@ -1,7 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import DisplayFile from './screens/DisplayFile.js';
 import ExternalRepsonderForm from './screens/ExtRes.js';
 import MedStaffForm from './screens/ExtRes2.js';
 import ExtResNotification from './screens/ExternalNotification.js';
@@ -18,7 +17,6 @@ import SignUpScreen from './screens/SignUp.js';
 import Splash from './screens/Splash.js';
 import UploadFileTab from './screens/UploadFile.js';
 import WelcomePage from './screens/Welcome.js';
-import UploadConsentForm from './screens/UploadConsentForm.js';
 
 const Stack = createStackNavigator();
 
@@ -43,9 +41,7 @@ const App = () =>{
           <Stack.Screen name = 'UploadFileTab' component={UploadFileTab}/>
           <Stack.Screen name = 'Notif' component={Notif}/>
           <Stack.Screen name = 'NotifHosp' component={NotifHosp}/>
-          <Stack.Screen name = 'DisplayFile' component={DisplayFile}/>
           <Stack.Screen name = 'SentResNotif' component={SentResNotif}/>
-          <Stack.Screen name = 'UploadConsentForm' component={UploadConsentForm}/>
         </Stack.Navigator>
       </NavigationContainer>
   );
