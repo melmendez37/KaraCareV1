@@ -7,7 +7,7 @@ import React from 'react';
 import { Alert, Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { storage } from '../firebaseConfig';
 
-const UploadFileTab = () => {
+const UploadConsentForm = () => {
   const nav = useNavigation();
 
   const ViewFile = () => {
@@ -30,11 +30,13 @@ const UploadFileTab = () => {
                 Alert.alert("Please select a file smaller than 1MB")
             }      
         }
+        
       }
         const UploadFile = async (blobFile, fileName) => {
           if (!blobFile) return;
-            const storageRef = ref(storage, `Medical Results(Hypothethical)/${fileName}`);
+            const storageRef = ref(storage, `ConsentForm(Hypothethical)/${fileName}`);
             await uploadBytesResumable(storageRef, blobFile);
+            nav.navigate('NotifHosp');
   }
 
   return (
@@ -75,4 +77,4 @@ const styles = StyleSheet.create({
     buttonPDF: {width: 300, height: 50, left: 65, top: 300},
 })
 
-export default UploadFileTab;
+export default UploadConsentForm;

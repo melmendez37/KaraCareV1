@@ -44,7 +44,7 @@ const Inpatient = () => {
                         text: 'Confirm',
                         onPress: () => {
                             sumbitReport()
-                            nav.navigate('NotifHosp');
+                            nav.navigate('UploadConsentForm');
                         },
                     },
                 ],
