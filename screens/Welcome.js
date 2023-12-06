@@ -41,18 +41,22 @@ const WelcomePage = () => {
 
                 <Image style={styles.image} source = {localImage} />
                     
-                <TouchableOpacity style = {styles.button1} onPress={handleExternalResponder}/>
+                <TouchableOpacity style = {styles.button1} onPress={handleExternalResponder}>
                 <Text style = {styles.buttonText}>EXTERNAL RESPONDER</Text>
+                </TouchableOpacity>
                     
-                <TouchableOpacity style = {styles.button2} onPress={handleMedStaff}/>
+                <TouchableOpacity style = {styles.button2} onPress={handleMedStaff}>
                 <Text style={styles.buttonText2}>MEDICAL STAFF</Text>
+                </TouchableOpacity>
 
                 <View style={styles.welcomeContainer}>
                 <Text style={styles.welcomeText}>WELCOME</Text>
                 
                 </View>
-                <TouchableOpacity style={styles.exitButton} onPress={handleExitApp}/>
+                <TouchableOpacity style={styles.exitButton} onPress={handleExitApp}>
                     <Text style={styles.exitText}>EXIT</Text>
+                </TouchableOpacity>
+                    
             </LinearGradient>
         </View>
     )
@@ -72,9 +76,9 @@ const styles = StyleSheet.create({
     buttonText:{width: 100, height: 55, left: 165, top: 467, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
     buttonText2: {width: 100, height: 55, left: 165, top: 565, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
     welcomeContainer: {width: 151, height: 100, left: 135, top: 377, position: 'absolute', alignItems: 'center', display: 'inline-flex'},
-    welcomeText: {left: -35, width: 151, height: 50, textAlign: 'center', color: '#FFFDFD', fontSize: 25, fontFamily: 'Roboto', fontWeight: 'bold'},
-    exitText: {width: 46, height: 19, left: 290, top: 386, position: 'absolute', textAlign: 'center', color: 'white', fontSize: 10, fontFamily: 'Roboto', fontWeight: '700'},
-    exitButton: {width: 70, height: 21, left: 280, top: 383, position: 'absolute', backgroundColor: '#8C8C8C', borderRadius: 20},
+    welcomeText: {left: 0, width: 151, height: 50, textAlign: 'center', color: '#FFFDFD', fontSize: 24, fontFamily: 'Roboto', fontWeight: 'bold'},
+    exitText: {width: 46, height: 19, left: 192, top: 653, position: 'absolute', textAlign: 'center', color: 'white', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
+    exitButton: {width: 80, height: 28, left: 175, top: 650, position: 'absolute', backgroundColor: '#8C8C8C', borderRadius: 20},
 });
 
 export default WelcomePage;

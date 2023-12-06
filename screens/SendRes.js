@@ -6,21 +6,21 @@ import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } fro
 import { db } from "../firebaseConfig";
 
 const SendRes = () => {
-  const nav = useNavigation();
+    const nav = useNavigation();
 
-  const reportCollection = collection(db, "MedResults");
+    const reportCollection = collection(db, "MedResults");
 
-  const submitReport = async() =>{
-      try {
-          await addDoc(reportCollection, {
-              Name: name,
-              MRN: mrn,
-              DischargeDate: date,
-          });
-      } catch (error) {
-          console.log(error)
-      } 
-  };
+    const submitReport = async() =>{
+        try {
+            await addDoc(reportCollection, {
+                Name: name,
+                MRN: mrn,
+                DischargeDate: date,
+            });
+        } catch (error) {
+            console.log(error)
+        }
+    };
 
     const [isNameFocused, setIsNameFocused] = useState(false);
     const [name, setName] = useState('');
@@ -34,36 +34,36 @@ const SendRes = () => {
     const [cond, setCond] = useState('');
 
     const cancel = () => {
-      nav.navigate('Home');
+        nav.navigate('Home');
     }
 
     const next = () => {
-      nav.navigate('UploadFileTab');
+        nav.navigate('UploadFileTab');
     }
     const goNext = () => {
-      if(!name || !mrn || !date || !add || !cond){
-          Alert.alert('WARNING', 'Please fill up the missing fields');
-      }
-      else{
-          Alert.alert(
-              'Confirmation',
-              'Do you wish to proceed?',
-              [
-                  {type:'Cancel', style: 'cancel'},
-                  {
-                      text: 'Confirm',
-                      onPress: () => {
-                        submitReport()
-                          nav.navigate('SentResNotif');
-                      },
-                  },
-              ],
-              {cancelable:false}
-          );
-      }
-  }
+        if(!name || !mrn || !date || !add || !cond){
+            Alert.alert('WARNING', 'Please fill up the missing fields');
+        }
+        else{
+            Alert.alert(
+                'Confirmation',
+                'Do you wish to proceed?',
+                [
+                    {type:'Cancel', style: 'cancel'},
+                    {
+                        text: 'Confirm',
+                        onPress: () => {
+                            submitReport()
+                            nav.navigate('UploadFileTab');
+                        },
+                    },
+                ],
+                {cancelable:false}
+            );
+        }
+    }
 
-  const handleFocus = (field) => {
+    const handleFocus = (field) => {
     switch (field){
         case 'name':
             setIsNameFocused(true);
@@ -85,29 +85,29 @@ const SendRes = () => {
     }
 }
 
-  const handleBlur = (field) => {
-      switch (field){
-          case 'name':
-              setIsNameFocused(false);
-              break;
-          case 'mrn':
-              setIsMrnFocused(false);
-              break;
-          case 'date':
-              setIsDateFocused(false);
-              break;
-          case 'add':
-              setIsAddFocused(false);
-              break;
-          case 'cond':
-              setIsCondFocused(false);
-              break;
-          default:
-              break;
-      }
-  }
+    const handleBlur = (field) => {
+        switch (field){
+            case 'name':
+                setIsNameFocused(false);
+                break;
+            case 'mrn':
+                setIsMrnFocused(false);
+                break;
+            case 'date':
+                setIsDateFocused(false);
+                break;
+            case 'add':
+                setIsAddFocused(false);
+                break;
+            case 'cond':
+                setIsCondFocused(false);
+                break;
+            default:
+                break;
+        }
+    }
 
-  const handleDateChange = (text) => {
+    const handleDateChange = (text) => {
     let formattedDate = text.replace(/\D/g, '');
     if (formattedDate.length > 2) {
         formattedDate = `${formattedDate.slice(0, 2)}/${formattedDate.slice(2)}`;
@@ -121,80 +121,80 @@ const SendRes = () => {
     setDate(formattedDate);
     }
 
-  return (
-    <View style={styles.container}>
-      <LinearGradient colors={['#00598B', '#8FBC8F']} style={styles.something}>
-      <View style={styles.recOne} />
-      <Text style={styles.title}>KaraCare EMERGENCY SYSTEM</Text>
-      <Image style={styles.image} source={require('../assets/karacare.png')}  />
-      <View style={styles.nextButton} />
-      <View style={styles.cancelButton} />
-      <TouchableOpacity style={styles.nextButton} onPress={goNext}/>
-      <TouchableOpacity style={styles.cancelButton} onPress={cancel}/>
-      <Text style={styles.nextButtonText}>Next</Text>
-      <Text style={styles.cancelButtonText}>Cancel</Text>
-      <View style={styles.recTwo}></View>
-      <Text style={styles.header}>SEND MEDICAL RESULTS</Text>
-      <View style={styles.recThree}></View>
-      <View style={styles.recFour}></View>
-      <View style={styles.recFive}></View>
-      <View style={styles.textBox1}>
-      <TextInput style={styles.textField1}
-                            value={name}
-                            textAlign= "center"
-                            onFocus = {() => handleFocus('name')}
-                            onBlur = {() => handleBlur('name')}
-                            onChangeText={(text) => setName(text)}
-                            placeholder = {(isNameFocused || name) ? '': 'Name'}
-                            placeholderColor = "#888"/>
-      </View>
-      <View style={styles.textBox2}>
-      <TextInput style={styles.textField2}
-                            value={mrn}
-                            textAlign= "center"
-                            onFocus = {() => handleFocus('mrn')}
-                            onBlur = {() => handleBlur('mrn')}
-                            onChangeText={(text) => setMrn(text)}
-                            placeholder = {(isMrnFocused || mrn) ? '': 'MRN (Medical Record Number)'}
-                            placeholderColor = "#888"/>
-      </View>
+    return (
+        <View style={styles.container}>
+        <LinearGradient colors={['#00598B', '#8FBC8F']} style={styles.something}>
+        <View style={styles.recOne} />
+        <Text style={styles.title}>KaraCare EMERGENCY SYSTEM</Text>
+        <Image style={styles.image} source={require('../assets/karacare.png')}  />
+        <View style={styles.nextButton} />
+        <View style={styles.cancelButton} />
+        <TouchableOpacity style={styles.nextButton} onPress={goNext}/>
+        <TouchableOpacity style={styles.cancelButton} onPress={cancel}/>
+        <Text style={styles.nextButtonText}>Next</Text>
+        <Text style={styles.cancelButtonText}>Cancel</Text>
+        <View style={styles.recTwo}></View>
+        <Text style={styles.header}>SEND MEDICAL RESULTS</Text>
+        <View style={styles.recThree}></View>
+        <View style={styles.recFour}></View>
+        <View style={styles.recFive}></View>
+        <View style={styles.textBox1}>
+        <TextInput style={styles.textField1}
+                                value={name}
+                                textAlign= "center"
+                                onFocus = {() => handleFocus('name')}
+                                onBlur = {() => handleBlur('name')}
+                                onChangeText={(text) => setName(text)}
+                                placeholder = {(isNameFocused || name) ? '': 'Name'}
+                                placeholderColor = "#888"/>
+        </View>
+        <View style={styles.textBox2}>
+        <TextInput style={styles.textField2}
+                                value={mrn}
+                                textAlign= "center"
+                                onFocus = {() => handleFocus('mrn')}
+                                onBlur = {() => handleBlur('mrn')}
+                                onChangeText={(text) => setMrn(text)}
+                                placeholder = {(isMrnFocused || mrn) ? '': 'MRN (Medical Record Number)'}
+                                placeholderColor = "#888"/>
+        </View>
 
-      <View style={styles.textBox3}>
-      <TextInput style={styles.textField3}
-                            value={date}
-                            textAlign= "center"
-                            onFocus = {() => handleFocus('date')}
-                            onBlur = {() => handleBlur('date')}
-                            onChangeText={handleDateChange}
-                            placeholder = {(isDateFocused || date) ? '': 'Date of Discharge'}
-                            placeholderColor = "#888"/>
+        <View style={styles.textBox3}>
+        <TextInput style={styles.textField3}
+                                value={date}
+                                textAlign= "center"
+                                onFocus = {() => handleFocus('date')}
+                                onBlur = {() => handleBlur('date')}
+                                onChangeText={handleDateChange}
+                                placeholder = {(isDateFocused || date) ? '': 'Date of Discharge'}
+                                placeholderColor = "#888"/>
 
-      <View style={styles.textBox4}>
-      <TextInput style={styles.textField4}
-                            value={add}
-                            textAlign= "center"
-                            onFocus = {() => handleFocus('add')}
-                            onBlur = {() => handleBlur('add')}
-                            onChangeText={(text) => setAdd(text)}
-                            placeholder = {(isAddFocused || add) ? '': 'Address'}
-                            placeholderColor = "#888"/>
-      </View>
+        <View style={styles.textBox4}>
+        <TextInput style={styles.textField4}
+                                value={add}
+                                textAlign= "center"
+                                onFocus = {() => handleFocus('add')}
+                                onBlur = {() => handleBlur('add')}
+                                onChangeText={(text) => setAdd(text)}
+                                placeholder = {(isAddFocused || add) ? '': 'Address'}
+                                placeholderColor = "#888"/>
+        </View>
 
-      <View style={styles.textBox5}>
-      <TextInput style={styles.textField5}
-                            value={cond}
-                            textAlign= "center"
-                            onFocus = {() => handleFocus('cond')}
-                            onBlur = {() => handleBlur('cond')}
-                            onChangeText={(text) => setCond(text)}
-                            placeholder = {(isCondFocused || cond) ? '': 'Condition'}
-                            placeholderColor = "#888"/>
-      </View>
-      </View>
-      </LinearGradient>
-    </View>
-  )
-}
+        <View style={styles.textBox5}>
+        <TextInput style={styles.textField5}
+                                value={cond}
+                                textAlign= "center"
+                                onFocus = {() => handleFocus('cond')}
+                                onBlur = {() => handleBlur('cond')}
+                                onChangeText={(text) => setCond(text)}
+                                placeholder = {(isCondFocused || cond) ? '': 'Condition'}
+                                placeholderColor = "#888"/>
+        </View>
+        </View>
+        </LinearGradient>
+        </View>
+    )
+    }
 
 const styles = StyleSheet.create({
     container: {width: 424, left: 0, top: 0, flex: 1, alignItems: 'center',justifyContent: 'center', backgroundColor: 'black'},
