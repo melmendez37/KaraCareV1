@@ -18,6 +18,7 @@ import SignUpScreen from './screens/SignUp.js';
 import Splash from './screens/Splash.js';
 import UploadFileTab from './screens/UploadFile.js';
 import WelcomePage from './screens/Welcome.js';
+import UploadConsentForm from './screens/UploadConsentForm.js';
 
 const Stack = createStackNavigator();
 
@@ -44,6 +45,7 @@ const App = () =>{
           <Stack.Screen name = 'NotifHosp' component={NotifHosp}/>
           <Stack.Screen name = 'DisplayFile' component={DisplayFile}/>
           <Stack.Screen name = 'SentResNotif' component={SentResNotif}/>
+          <Stack.Screen name = 'UploadConsentForm' component={UploadConsentForm}/>
         </Stack.Navigator>
       </NavigationContainer>
   );
