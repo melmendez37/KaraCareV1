@@ -17,7 +17,8 @@ const SendRes = () => {
                 MRN: mrn,
                 DischargeDate: date,
                 Address: add,
-                Condition: cond
+                Condition: cond,
+                Age: age
             });
         } catch (error) {
             console.log(error)
@@ -33,6 +34,8 @@ const SendRes = () => {
     const [isAddFocused, setIsAddFocused] = useState(false);
     const [add, setAdd] = useState('');
     const [isCondFocused, setIsCondFocused] = useState(false);
+    const [age, setAge] = useState('');
+    const [isAgeFocused, setIsAgeFocused] = useState(false);
     const [cond, setCond] = useState('');
 
     const cancel = () => {
@@ -40,7 +43,7 @@ const SendRes = () => {
     }
 
     const goNext = () => {
-        if(!name || !mrn || !date || !add || !cond){
+        if(!name || !mrn || !date || !add || !cond || !age){
             Alert.alert('WARNING', 'Please fill up the missing fields');
         }
         else if(mrn.toString().length != 10){
@@ -76,12 +79,16 @@ const SendRes = () => {
         case 'date':
             setIsDateFocused(true);
             break;
+        case 'age':
+            setIsAgeFocused(true);
+            break;
         case 'add':
             setIsAddFocused(true);
             break;
         case 'cond':
             setIsCondFocused(true);
             break;
+        
         default:
             break;
     }
@@ -97,6 +104,9 @@ const SendRes = () => {
                 break;
             case 'date':
                 setIsDateFocused(false);
+                break;
+            case 'age':
+                setIsAgeFocused(true);
                 break;
             case 'add':
                 setIsAddFocused(false);
@@ -178,6 +188,17 @@ const SendRes = () => {
 
         <View style={styles.textBox4}>
         <TextInput style={styles.textField4}
+                                value={age}
+                                textAlign= "center"
+                                onFocus = {() => handleFocus('age')}
+                                onBlur = {() => handleBlur('age')}
+                                onChangeText={(text) => setAge(text)}
+                                placeholder = {(isAgeFocused || age) ? '': 'Age'}
+                                placeholderColor = "#888"/>
+        </View>
+
+        <View style={styles.textBox5}>
+        <TextInput style={styles.textField5}
                                 value={add}
                                 textAlign= "center"
                                 onFocus = {() => handleFocus('add')}
@@ -187,8 +208,8 @@ const SendRes = () => {
                                 placeholderColor = "#888"/>
         </View>
 
-        <View style={styles.textBox5}>
-        <TextInput style={styles.textField5}
+        <View style={styles.textBox6}>
+        <TextInput style={styles.textField6}
                                 value={cond}
                                 textAlign= "center"
                                 onFocus = {() => handleFocus('cond')}
@@ -209,24 +230,27 @@ const styles = StyleSheet.create({
     recOne:{width: 350, height: 800, left: 40, top: 65, position: 'absolute', backgroundColor: '#BCBCBC'},
     title:{width: 200, height: 49, left: 150, top: 140, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 18, fontFamily: 'Roboto', fontWeight: '700',},
     image:{width: 68, height: 66, left: 67, top: 137, position: 'absolute'},
-    nextButton:{width: 80, height: 40, left: 133, top: 605, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 100},
-    cancelButton:{width: 80, height: 40, left: 222, top: 605, position: 'absolute', backgroundColor: '#46525E', borderRadius: 100},
+    nextButton:{width: 80, height: 40, left: 133, top: 650, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 100},
+    cancelButton:{width: 80, height: 40, left: 222, top: 650, position: 'absolute', backgroundColor: '#46525E', borderRadius: 100},
     nextButtonText:{width: 80, height: 40, top:10, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
     cancelButtonText:{width: 80, height: 40, top:10, position: 'absolute', textAlign: 'center', color: '#D9D9D9', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
     recTwo:{width: 350, height: 80, left: 40, top: 215, position: 'absolute', backgroundColor: '#46525E'},
     header:{width: 300, height: 28, left: 62, top: 237, position: 'absolute', textAlign: 'center', color: '#FFFBFB', fontSize: 24, fontFamily: 'Roboto', fontWeight: '700', },
     recThree:{width: 350, height: 60, left: 40, top: 64, position: 'absolute', backgroundColor: '#46525E'},
-    recFour:{width: 350, height: 80, left: 40, top: 670, position: 'absolute', backgroundColor: '#8C8C8C'},
-    recFive:{width: 350, height: 115, left: 40, top: 750, position: 'absolute', backgroundColor: '#46525E'},
-    textBox1:{width: 250, height: 40, left: 95, top: 320, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
+    recFour:{width: 350, height: 50, left: 40, top: 715, position: 'absolute', backgroundColor: '#8C8C8C'},
+    recFive:{width: 350, height: 100, left: 40, top: 765, position: 'absolute', backgroundColor: '#46525E'},
+    
+    textBox1:{width: 250, height: 40, left: 95, top: 315, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
     textField1:{width: 200, height: 40, left: 20, top: 0, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400',},
-    textBox2:{width: 250, height: 40, left: 95, top: 375, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
+    textBox2:{width: 250, height: 40, left: 95, top: 370, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
     textField2:{width: 200, height: 40, left: 20, top: 0, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400',},
-    textBox3:{width: 250, height: 40, left: 95, top: 430, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
+    textBox3:{width: 250, height: 40, left: 95, top: 425, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
     textField3:{width: 200, height: 40, left: 20, top: 0, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400',},
     textBox4:{width: 250, height: 40, left: 0, top: 55, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
     textField4:{width: 200, height: 40, left: 20, top: 0, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400',},
     textBox5:{width: 250, height: 40, left: 0, top: 110, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
     textField5:{width: 200, height: 40, left: 20, top: 0, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400',},
+    textBox6:{width: 250, height: 40, left: 0, top: 165, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
+    textField6:{width: 200, height: 40, left: 20, top: 0, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400',},
 })
 export default SendRes;

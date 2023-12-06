@@ -1,11 +1,11 @@
-
+import { ref, uploadBytesResumable } from '@firebase/storage';
 import { useNavigation } from '@react-navigation/native';
 import * as DocumentPicker from 'expo-document-picker';
 import { LinearGradient } from 'expo-linear-gradient';
 import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from 'react';
 import { ActivityIndicator, Alert, Button, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { db } from "../firebaseConfig";
+import { db, storage } from "../firebaseConfig";
 
 const Inpatient = () => {
     const nav = useNavigation();
@@ -19,42 +19,70 @@ const Inpatient = () => {
                 Name: name,
                 RoomNumber: room,
                 PhoneNumber: num,
-                MDAssigned: doc 
+                MDAssigned: doc
             });
         } catch (error) {
             console.log(error)
         } 
     };
 
-    const pickDocument = async () => {
-        let result = await DocumentPicker.getDocumentAsync({})
-        if (result != null) {
-            if(result.assets[0].size < 1000000){
-    
-                const r = await fetch(result.assets[0].uri);
-                const b = await r.blob();
-    
-                if (b != null) {
-                    UploadFile(b, result.assets[0].name)
-                }
-                setTimeout(() => {
+        const pickDocument = async () => {
+            let result = await DocumentPicker.getDocumentAsync({})
+            if (result != null) {
+                if(result.assets[0].size < 1000000){
+        
+                    const r = await fetch(result.assets[0].uri);
+                    const b = await r.blob();
+        
+                    if (b != null) {
+                        UploadConsentFile(b, result.assets[0].name)
+                    }
+                    setTimeout(() => {
+                        setLoad(false);
+                        Alert.alert("UPLOAD SUCCESS", "File upload successful.")
+                    }, 1000)
                     setLoad(false);
-                    Alert.alert("UPLOAD SUCCESS", "File upload successful.")
-                }, 1000)
-                setLoad(false);
-                } else{
-                Alert.alert("Please select a file smaller than 1MB")
-            }
+                    } else{
+                    Alert.alert("Please select a file smaller than 1MB")
+                }
         }
         setLoad(false);
         }
 
-      const UploadFile = async (blobFile, fileName) => {
-        if (!blobFile) return;
-          const storageRef = ref(storage, `ConsentForm(Hypothethical)/${fileName}`);
-          await uploadBytesResumable(storageRef, blobFile);
-          nav.navigate('NotifHosp');
-}
+        const pickPastResults = async () => {
+            let result = await DocumentPicker.getDocumentAsync({})
+            if (result != null) {
+                if(result.assets[0].size < 1000000){
+        
+                    const r = await fetch(result.assets[0].uri);
+                    const b = await r.blob();
+        
+                    if (b != null) {
+                        UploadPastFile(b, result.assets[0].name)
+                    }
+                    setTimeout(() => {
+                        setLoad(false);
+                        Alert.alert("UPLOAD SUCCESS", "File upload successful.")
+                    }, 1000)
+                    setLoad(false);
+                    } else{
+                    Alert.alert("Please select a file smaller than 1MB")
+                }
+            }
+            setLoad(false);
+        }
+
+        const UploadConsentFile = async (blobFile, fileName) => {
+            if (!blobFile) return;
+            const storageRef = ref(storage, `ConsentForm(Hypothethical)/${fileName}`);
+            await uploadBytesResumable(storageRef, blobFile);
+        }
+        
+        const UploadPastFile = async (blobFile, fileName) => {
+            if (!blobFile) return;
+                const storageRef = ref(storage, `Medical Results(old)/${fileName}`);
+                await uploadBytesResumable(storageRef, blobFile);
+        }
 
     const goNext = () => {
         if(!name || !num || !room || !doc){
@@ -76,7 +104,7 @@ const Inpatient = () => {
                         text: 'Confirm',
                         onPress: () => {
                             sumbitReport()
-                            nav.navigate('UploadConsentForm');
+                            nav.navigate('NotifHosp');
                         },
                     },
                 ],
@@ -196,6 +224,10 @@ const Inpatient = () => {
         <Button title='Upload CONSENT FORM' onPress = {pickDocument}/>
         </View>
 
+        <View style={styles.buttonPDF2}>
+        <Button title='Upload previous results' onPress = {pickPastResults}/>
+        </View>
+
         {load &&(
                     <View style={styles.loadingPop}>
                         <Text style = {{ color: '#fff', marginLeft: 10, fontSize: 24, fontFamily: 'Roboto' }}>Loading...</Text>
@@ -215,9 +247,9 @@ const styles = StyleSheet.create({
     recOnere:{width: 350, height: 800, left: 40, top: 65, position: 'absolute', backgroundColor: '#BCBCBC'},
     title:{width: 248, height: 49, left: 140, top: 138, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 16, fontFamily: 'Roboto', fontWeight: '700'},
     image:{width: 68, height: 66, left: 80, top: 122, position: 'absolute'},
-    button2:{width: 80, height: 40, left: 222, top: 580, position: 'absolute', backgroundColor: '#46525E', borderRadius: 100},
-    button1:{width: 80, height: 40, left: 133, top: 580, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 100},
-    recTwo:{width: 350, height: 80, left: 40, top: 685, position: 'absolute', backgroundColor: '#8C8C8C'},
+    button2:{width: 80, height: 40, left: 222, top: 620, position: 'absolute', backgroundColor: '#46525E', borderRadius: 100},
+    button1:{width: 80, height: 40, left: 133, top: 620, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 100},
+    recTwo:{width: 350, height: 60, left: 40, top: 705, position: 'absolute', backgroundColor: '#8C8C8C'},
     buttonText2:{width: 80, height: 20, top: 10, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
     buttonText1:{width: 80, height: 20, top: 10, position: 'absolute', textAlign: 'center', color: 'white', fontSize: 14, fontFamily: 'Roboto', fontWeight: '700'},
     recThree:{width: 350, height: 109, left: 40, top: 756, position: 'absolute', backgroundColor: '#46525E'},
@@ -225,16 +257,16 @@ const styles = StyleSheet.create({
     header:{width: 350, height: 48, left: 40, top: 200, position: 'absolute', backgroundColor: '#46525E'},
     recText1:{width: 237, height: 23, left: 100, top: 210, position: 'absolute', textAlign: 'center', color: '#FFFBFB', fontSize: 20, fontFamily: 'Roboto', fontWeight: '700'},
 
-    textBox1:{width: 250, height: 40, left: 95, top: 285, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
+    textBox1:{width: 250, height: 40, left: 95, top: 270, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
     textField1:{width: 200, height: 40, left: 20, top: 0, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400',},
-    textBox2:{width: 250, height: 40, left: 95, top: 340, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
+    textBox2:{width: 250, height: 40, left: 95, top: 325, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
     textField2:{width: 200, height: 40, left: 20, top: 0, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400',},
-    textBox3:{width: 250, height: 40, left: 95, top: 395, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
+    textBox3:{width: 250, height: 40, left: 95, top: 380, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
     textField3:{width: 200, height: 40, left: 20, top: 0, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400',},
-    textBox4:{width: 250, height: 40, left: 95, top: 450, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
+    textBox4:{width: 250, height: 40, left: 95, top: 435, position: 'absolute', backgroundColor: '#D9D9D9', borderRadius: 50},
     textField4:{width: 200, height: 40, left: 20, top: 0, position: 'absolute', textAlign: 'center', color: 'black', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400',},
-    buttonPDF: {width: 210, left: 115, top: 510, borderRadius: 20},
-
+    buttonPDF: {width: 210, left: 115, top: 490, borderRadius: 20},
+    buttonPDF2: {width: 210, left: 115, top: 500, borderRadius: 20},
     loadingPop: {flexDirection:'row', width: 300, height: 100, left: 65, top: 200, justifyContent: 'center', alignItems: 'center', backgroundColor: '#444444', borderRadius: 20},
     loadingtext: {width: 151, height: 40, left: 0, top: 0, position: 'absolute', textAlign: 'center', color: '#FFFDFD', fontSize: 25, fontFamily: 'Roboto', fontWeight: '700'},
 
