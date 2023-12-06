@@ -11,25 +11,18 @@ const Inpatient = () => {
     const nav = useNavigation();
     const [load, setLoad] = useState(false);
     const [roomNumberList, setRoomNums] = useState([]);
-    const [state, setState] = useState(true);
+
 
 
     const reportCollection = collection(db, "InpatientRecords");
 
     const isReady = () =>{
-        setState(true);
-        roomNumberList.map((doc) => {
-            currentRoom = toString(doc.RoomNumber);
-            if(currentRoom == room) {
-                setState(false);
+        for(let doc of roomNumberList){
+            if(doc.RoomNumber.toString() == room.toString()){
+                return false;
             }
-        })
-        if(state == false){
-            return false;
-        }else{
-            return true;
         }
-
+        return true;
     }
 useEffect(() => {
     const getRecords = async() =>{
