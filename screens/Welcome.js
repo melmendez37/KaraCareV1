@@ -19,7 +19,7 @@ const WelcomePage = () => {
     
     const handleExitApp = () => {
         Alert.alert('CONFIRM EXIT', 'Do you wanna exit the app?', [
-          {
+        {
             text: 'Cancel',
             style: 'cancel',
           },
