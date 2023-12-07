@@ -26,7 +26,7 @@ const UploadFileTab = () => {
             if (b != null) {
                 UploadFile(b, result.assets[0].name)
             }
-            setLoad(true);
+            
             setTimeout(() => {
               setLoad(false);
               Alert.alert("UPLOAD SUCCESS", "File upload successful.")

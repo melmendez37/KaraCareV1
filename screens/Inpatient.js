@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import * as DocumentPicker from 'expo-document-picker';
 import { LinearGradient } from 'expo-linear-gradient';
 import { addDoc, collection, getDocs } from "firebase/firestore";
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, Button, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { db, storage } from "../firebaseConfig";
 
@@ -60,6 +60,7 @@ useEffect(() => {
                     if (b != null) {
                         UploadConsentFile(b, result.assets[0].name)
                     }
+                    
                     setTimeout(() => {
                         setLoad(false);
                         Alert.alert("UPLOAD SUCCESS", "File upload successful.")
@@ -83,13 +84,14 @@ useEffect(() => {
                     if (b != null) {
                         UploadPastFile(b, result.assets[0].name)
                     }
+                    
                     setTimeout(() => {
                         setLoad(false);
                         Alert.alert("UPLOAD SUCCESS", "File upload successful.")
                     }, 1000)
                     setLoad(false);
                     } else{
-                    Alert.alert("Please select a file smaller than 1MB")
+                    Alert.alert("UPLOAD ERROR","Please select a file smaller than 1MB")
                 }
             }
             setLoad(false);
@@ -118,7 +120,7 @@ useEffect(() => {
             Alert.alert('INPUT ERROR!', 'Number must be 11 digits.')
         }
         else if(isReady() == false){
-            Alert.alert("Room is already taken");
+            Alert.alert("ERROR","Room is already taken");
         }
         else{
                 Alert.alert(
@@ -158,6 +160,7 @@ useEffect(() => {
                 break;
             case 'doc':
                 setIsDocFocused(true);
+                break;
             case 'num':
                 setIsNumFocused(true);
                 break;
@@ -178,8 +181,10 @@ useEffect(() => {
                 break;
             case 'room':
                 setIsRoomFocused(false);
+                break;
             case 'doc':
                 setIsDocFocused(false);
+                break;
             default:
                 break;
         }
