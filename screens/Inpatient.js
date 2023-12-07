@@ -2,16 +2,39 @@ import { ref, uploadBytesResumable } from '@firebase/storage';
 import { useNavigation } from '@react-navigation/native';
 import * as DocumentPicker from 'expo-document-picker';
 import { LinearGradient } from 'expo-linear-gradient';
-import { addDoc, collection } from "firebase/firestore";
-import React, { useState } from 'react';
+import { addDoc, collection, getDocs } from "firebase/firestore";
+import React, { useState, useEffect } from 'react';
 import { ActivityIndicator, Alert, Button, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { db, storage } from "../firebaseConfig";
 
 const Inpatient = () => {
     const nav = useNavigation();
     const [load, setLoad] = useState(false);
+    const [roomNumberList, setRoomNums] = useState([]);
+
+
 
     const reportCollection = collection(db, "InpatientRecords");
+
+    const isReady = () =>{
+        for(let doc of roomNumberList){
+            if(doc.RoomNumber.toString() == room.toString()){
+                return false;
+            }
+        }
+        return true;
+    }
+useEffect(() => {
+    const getRecords = async() =>{
+        const data = await getDocs(reportCollection);
+        const filteredData = data.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+        }));
+        setRoomNums(filteredData)
+    }
+    getRecords()
+}, [])
 
     const sumbitReport = async() =>{
         try {
@@ -94,22 +117,25 @@ const Inpatient = () => {
         else if(num.toString().length != 11){
             Alert.alert('INPUT ERROR!', 'Number must be 11 digits.')
         }
+        else if(isReady() == false){
+            Alert.alert("Room is already taken");
+        }
         else{
-            Alert.alert(
-                'Confirmation',
-                'Do you wish to proceed?',
-                [
-                    {type:'Cancel', style: 'cancel'},
-                    {
-                        text: 'Confirm',
-                        onPress: () => {
-                            sumbitReport()
-                            nav.navigate('NotifHosp');
+                Alert.alert(
+                    'Confirmation',
+                    'Do you wish to proceed?',
+                    [
+                        {type:'Cancel', style: 'cancel'},
+                        {
+                            text: 'Confirm',
+                            onPress: () => {
+                                sumbitReport()
+                                nav.navigate('NotifHosp');
+                            },
                         },
-                    },
-                ],
-                {cancelable:false}
-            );
+                    ],
+                    {cancelable:false}
+                );     
         }
     }
 
