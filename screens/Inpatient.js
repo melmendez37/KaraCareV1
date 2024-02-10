@@ -256,7 +256,7 @@ useEffect(() => {
         </View>
 
         <View style={styles.buttonPDF2}>
-        <Button title='Upload previous results' onPress = {pickPastResults}/>
+        <Button title='Upload previous results' onPress = {pickPastResults} style = {{backgroundColor: '#fff', marginLeft: 10, fontSize: 24, fontFamily: 'Roboto'}}/>
         </View>
 
         {load &&(

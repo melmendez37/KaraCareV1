@@ -106,7 +106,7 @@ const SendRes = () => {
                 setIsDateFocused(false);
                 break;
             case 'age':
-                setIsAgeFocused(true);
+                setIsAgeFocused(false);
                 break;
             case 'add':
                 setIsAddFocused(false);
